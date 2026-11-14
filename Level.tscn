@@ -31,6 +31,16 @@ offset_right = 1203.0
 offset_bottom = 704.0
 texture = ExtResource("1_bg")
 
+[node name="LavaFloor" type="TextureRect" parent="." unique_id=1571574014]
+texture_repeat = 2
+offset_left = -15.0
+offset_top = 490.0
+offset_right = 369.0
+offset_bottom = 550.0
+scale = Vector2(3, 3)
+texture = ExtResource("3_lava")
+stretch_mode = 1
+
 [node name="MidRocks" type="TextureRect" parent="." unique_id=589552363]
 texture_repeat = 2
 offset_left = -241.0
@@ -54,21 +64,12 @@ position = Vector2(584, 615.5)
 shape = SubResource("RectangleShape2D_q6vxt")
 
 [node name="TextureRect" type="TextureRect" parent="Floor" unique_id=1665761160]
-offset_left = -6.0
-offset_top = 181.0
-offset_right = 410.0
-offset_bottom = 224.0
+offset_left = -45.0
+offset_top = 542.0
+offset_right = 371.0
+offset_bottom = 587.0
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_q6vxt")
-stretch_mode = 1
-
-[node name="LavaFloor" type="TextureRect" parent="." unique_id=1571574014]
-texture_repeat = 2
-offset_top = 191.0
-offset_right = 384.0
-offset_bottom = 251.0
-scale = Vector2(3, 3)
-texture = ExtResource("3_lava")
 stretch_mode = 1
 
 [node name="bgmusic" type="AudioStreamPlayer" parent="." unique_id=462253595]

@@ -47,14 +47,15 @@ stretch_mode = 6
 [node name="LavaFloor" type="TextureRect" parent="." unique_id=1005674394]
 texture_repeat = 2
 layout_mode = 0
-offset_top = 190.0
-offset_right = 384.0
-offset_bottom = 250.0
+offset_left = 2.0
+offset_top = 578.0
+offset_right = 398.33334
+offset_bottom = 638.0
 scale = Vector2(3, 3)
 texture = ExtResource("5_lava")
 stretch_mode = 1
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=759750406]
 stream = ExtResource("6_menu")
 volume_db = -12.0
 autoplay = true
