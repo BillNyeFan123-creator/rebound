@@ -42,7 +42,7 @@ const HIT_VFX_FRAMES := Vector3i(6, 5, 30)  # h, v, count
 func take_hit(damage: float) -> void:
 	health -= int(ceil(damage))
 	Vfx.spawn(get_parent(), HIT_VFX, HIT_VFX_FRAMES.x, HIT_VFX_FRAMES.y, HIT_VFX_FRAMES.z,
-		30.0, global_position, 0.25)
+		45.0, global_position, 0.35)
 	if health <= 0:
 		die()
 		return
@@ -53,6 +53,6 @@ func take_hit(damage: float) -> void:
 
 
 func die() -> void:
-	Vfx.spawn(get_parent(), DEATH_VFX, 6, 5, 30, 30.0, global_position, 0.45)
+	Vfx.spawn(get_parent(), DEATH_VFX, 6, 5, 30, 30.0, global_position, 0.6)
 	died.emit()
 	queue_free()

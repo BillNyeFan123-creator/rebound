@@ -14,6 +14,8 @@ const ATTACK_RADIUS = 60.0
 const DASH_SPEED = 900.0
 const DASH_TIME = 0.15
 const DASH_COOLDOWN = 0.8
+const JUMP_BUFFER_TIME = 0.12  # presses this long before landing still jump
+const COYOTE_TIME = 0.12       # grace period to jump after leaving the ground
 
 var health: int = BASE_MAX_HEALTH
 var invuln_timer := 0.0
@@ -35,6 +37,8 @@ var dash_cd := 0.0
 var dash_time := 0.0
 var dash_dir := Vector2.RIGHT
 var facing := 1.0
+var jump_buffer := 0.0
+var coyote := 0.0
 
 
 func _ready() -> void:
@@ -55,11 +59,21 @@ func _physics_process(delta: float) -> void:
 		check_hazards()
 		return
 
-	if not is_on_floor():
+	if is_on_floor():
+		coyote = COYOTE_TIME
+	else:
+		coyote -= delta
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer = JUMP_BUFFER_TIME
+	else:
+		jump_buffer -= delta
+
+	if jump_buffer > 0.0 and coyote > 0.0:
 		velocity.y = JUMP_VELOCITY * jump_mult
+		jump_buffer = 0.0
+		coyote = 0.0
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
@@ -102,7 +116,9 @@ func _start_dash(direction: float) -> void:
 		dash_dir = Vector2(direction, 0.0)
 	else:
 		dash_dir = Vector2(facing, 0.0)
-	Vfx.spawn(get_parent(), DASH_VFX, 6, 5, 30, 60.0, global_position, 0.35)
+	var fx := Vfx.spawn(get_parent(), DASH_VFX, 6, 5, 30, 60.0, global_position, 0.45)
+	if dash_dir.x < 0.0:
+		fx.flip_h = true
 	invuln_timer = maxf(invuln_timer, DASH_TIME * dash_time_mult)
 	dash_time = DASH_TIME * dash_time_mult
 	dash_cd = DASH_COOLDOWN * dash_cd_mult

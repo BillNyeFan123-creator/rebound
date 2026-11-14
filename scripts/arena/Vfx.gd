@@ -13,7 +13,7 @@ var _time := 0.0
 
 
 static func spawn(parent: Node, sheet: Texture2D, h_frames: int, v_frames: int,
-		frame_count: int, fps: float, pos: Vector2, fx_scale := 1.0) -> void:
+		frame_count: int, fps: float, pos: Vector2, fx_scale := 1.0) -> Vfx:
 	var sprite := Vfx.new()
 	sprite.texture = sheet
 	sprite._h_frames = h_frames
@@ -30,6 +30,7 @@ static func spawn(parent: Node, sheet: Texture2D, h_frames: int, v_frames: int,
 	sprite.scale = Vector2.ONE * fx_scale
 	sprite.z_index = 5
 	parent.add_child(sprite)
+	return sprite
 
 
 func _process(delta: float) -> void:
