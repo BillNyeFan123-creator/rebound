@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bi2w51p3sjm1n"]
+
+[ext_resource type="PackedScene" uid="uid://cisd4joxypi0y" path="res://scenes/Player.tscn" id="1_bexhn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q6vxt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6vxt"]
+size = Vector2(1226, 20)
+
+[node name="Level" type="Node2D" unique_id=723381019]
+
+[node name="Player" parent="." unique_id=976563110 instance=ExtResource("1_bexhn")]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=934898494]
+physics_material_override = SubResource("PhysicsMaterial_q6vxt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1101255283]
+position = Vector2(582, 557)
+shape = SubResource("RectangleShape2D_q6vxt")

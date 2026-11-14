@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bjfgqwmwvxngu"]
+
+[ext_resource type="Texture2D" uid="uid://c324vmnhbn7wa" path="res://assets/obstacle/16-bit-spike-Sheet.png" id="1_jde5u"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yced0"]
+
+[node name="Obstacle" type="StaticBody2D" unique_id=1860555685]
+position = Vector2(2, 1)
+physics_material_override = SubResource("PhysicsMaterial_yced0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1938044369]
+position = Vector2(6, 6)
+texture = ExtResource("1_jde5u")
+region_enabled = true
+region_rect = Rect2(0, 2.5392075, 15.808998, 13.460793)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=877452180]
+position = Vector2(6, 6)
