@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drcju0ep61atp"]
 
-[ext_resource type="Script" uid="uid://c77m2qo11yv5l" path="res://button.gd" id="1_ncxyx"]
+[sub_resource type="Theme" id="Theme_q6vxt"]
 
 [sub_resource type="GDScript" id="GDScript_pevhg"]
 script/source = "extends Control
@@ -23,17 +23,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_q6vxt")
 script = SubResource("GDScript_pevhg")
 
-[node name="Button" type="Button" parent="." unique_id=2065341319]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 425.0
-offset_top = 358.0
-offset_right = -435.0
-offset_bottom = -143.0
-text = "start game
-"
-script = ExtResource("1_ncxyx")
+[node name="Button" type="Button" parent="." unique_id=1389527646]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
