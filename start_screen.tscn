@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://drcju0ep61atp"]
 
-[sub_resource type="Theme" id="Theme_q6vxt"]
+[ext_resource type="Theme" uid="uid://b7otltoatbmd0" path="res://assets/Themes/MainTheme.tres" id="1_ncxyx"]
+[ext_resource type="Script" uid="uid://c66plo1a4mxp1" path="res://scripts/StartButtonManager.gd" id="2_pevhg"]
 
 [sub_resource type="GDScript" id="GDScript_pevhg"]
 script/source = "extends Control
@@ -18,15 +19,27 @@ func _process(delta: float) -> void:
 
 [node name="StartScreen" type="Control" unique_id=762497190]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -27.0
+offset_right = -14.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_q6vxt")
+theme = ExtResource("1_ncxyx")
 script = SubResource("GDScript_pevhg")
 
 [node name="Button" type="Button" parent="." unique_id=1389527646]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015000001
+anchor_top = 0.046000004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 315.72
+offset_top = 360.192
+offset_right = -259.0
+offset_bottom = -5.0
+text = "Start Game"
+script = ExtResource("2_pevhg")
