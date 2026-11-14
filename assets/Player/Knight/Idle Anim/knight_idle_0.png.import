@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://48ccgkqjrld3"
-path="res://.godot/imported/mage_idle_0.png-d84299dfab5e01d3d53145e58835f7cb.ctex"
+uid="uid://u4g038qop5cs"
+path="res://.godot/imported/knight_idle_0.png-c042e38eea806ee17c22ecf07c5bba2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Player/mage_idle_0.png"
-dest_files=["res://.godot/imported/mage_idle_0.png-d84299dfab5e01d3d53145e58835f7cb.ctex"]
+source_file="res://assets/Player/Knight/Idle Anim/knight_idle_0.png"
+dest_files=["res://.godot/imported/knight_idle_0.png-c042e38eea806ee17c22ecf07c5bba2e.ctex"]
 
 [params]
 
