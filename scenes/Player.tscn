@@ -1,77 +1,22 @@
 [gd_scene format=3 uid="uid://cisd4joxypi0y"]
 
 [ext_resource type="Script" uid="uid://cpw8iinfo4paq" path="res://scripts/player/player.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://u4g038qop5cs" path="res://assets/Player/Knight/Idle Anim/knight_idle_0.png" id="2_cw2d6"]
-[ext_resource type="Texture2D" uid="uid://caaghuvi0yqp1" path="res://assets/Player/Knight/Idle Anim/knight_idle_1.png" id="3_khinc"]
-[ext_resource type="Texture2D" uid="uid://48ccgkqjrld3" path="res://assets/Player/Mage/Idle Anim/mage_idle_0.png" id="4_bruh7"]
-[ext_resource type="Texture2D" uid="uid://bf3a23y0p3scs" path="res://assets/Player/Mage/Idle Anim/mage_idle_1.png" id="5_6eyey"]
-[ext_resource type="Texture2D" uid="uid://dyd0y408ih1id" path="res://assets/Player/Rogue/Idle Anim/rogue_idle_0.png" id="6_d3wef"]
-[ext_resource type="Texture2D" uid="uid://bpgg0yntgpvpx" path="res://assets/Player/Rogue/Idle Anim/rogue_idle_1.png" id="7_o4126"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vrxvm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_cw2d6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_khinc")
-}],
-"loop": 1,
-"name": &"knight idle",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" path="res://scenes/player/sprite_knight.tscn" id="2_knight"]
+[ext_resource type="Script" uid="uid://cjabg4x6vm740" path="res://scripts/SpriteKnightAnimanager.gd" id="3_3li8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
 size = Vector2(100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hkfcn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_bruh7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_6eyey")
-}],
-"loop": 1,
-"name": &"mage idle",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lu1c8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_d3wef")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_o4126")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=976563110 groups=["player"]]
 position = Vector2(293, 202)
 script = ExtResource("1_kpjcp")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=619924336]
-sprite_frames = SubResource("SpriteFrames_vrxvm")
-animation = &"knight idle"
-centered = false
+[node name="SpriteKnight" parent="." unique_id=1646358673 instance=ExtResource("2_knight")]
+position = Vector2(-38, 16.999994)
+scale = Vector2(6.2500014, 6.2500005)
+frame_progress = 0.4779574
+script = ExtResource("3_3li8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533772936]
 position = Vector2(12, 67)
 shape = SubResource("RectangleShape2D_xhfnw")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1563404330]
-position = Vector2(33, 4)
-sprite_frames = SubResource("SpriteFrames_hkfcn")
-animation = &"mage idle"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1796205869]
-position = Vector2(-17, 4)
-sprite_frames = SubResource("SpriteFrames_lu1c8")
-frame_progress = 0.98801184

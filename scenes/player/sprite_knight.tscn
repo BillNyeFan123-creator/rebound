@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://u4g038qop5cs" path="res://assets/Player/Knight/Idle Anim/knight_idle_0.png" id="1_cw2d6"]
+[ext_resource type="Texture2D" uid="uid://caaghuvi0yqp1" path="res://assets/Player/Knight/Idle Anim/knight_idle_1.png" id="2_khinc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vrxvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cw2d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_khinc")
+}],
+"loop": 1,
+"name": &"knight idle",
+"speed": 5.0
+}]
+
+[node name="SpriteKnight" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_vrxvm")
+animation = &"knight idle"
+centered = false
