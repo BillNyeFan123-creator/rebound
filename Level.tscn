@@ -88,3 +88,5 @@ visible = false
 script = ExtResource("4_waves")
 enemy_scene = ExtResource("5_enemy")
 pick_ui_path = NodePath("../CardPickUI")
+
+[node name="menumusic" type="AudioStreamPlayer" parent="." unique_id=1051346311]
