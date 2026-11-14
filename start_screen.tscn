@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://sdg2bp2tcw2i" path="res://assets/GameUI/Title/title(1).png" id="3_afy8x"]
 [ext_resource type="Texture2D" uid="uid://covjq5dkg8058" path="res://assets/Backgrounds/Lava/background.png" id="4_lavabg"]
 [ext_resource type="Texture2D" uid="uid://mijwfcrkyma8" path="res://assets/Backgrounds/Lava/lava-tile.png" id="5_lava"]
+[ext_resource type="AudioStream" uid="uid://dn7g5hmpviwno" path="res://assets/Sounds/bgmusic(2).wav" id="6_menu"]
 
 [sub_resource type="GDScript" id="GDScript_pevhg"]
 script/source = "extends Control
@@ -41,17 +42,22 @@ offset_top = -114.0
 offset_right = 1223.0
 offset_bottom = 725.0
 texture = ExtResource("4_lavabg")
+stretch_mode = 6
 
 [node name="LavaFloor" type="TextureRect" parent="." unique_id=1005674394]
 texture_repeat = 2
 layout_mode = 0
-offset_left = -41.0
-offset_top = 567.0
-offset_right = 373.0
-offset_bottom = 627.0
+offset_top = 190.0
+offset_right = 384.0
+offset_bottom = 250.0
 scale = Vector2(3, 3)
 texture = ExtResource("5_lava")
 stretch_mode = 1
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_menu")
+volume_db = -12.0
+autoplay = true
 
 [node name="Button" type="Button" parent="." unique_id=1389527646]
 layout_mode = 1

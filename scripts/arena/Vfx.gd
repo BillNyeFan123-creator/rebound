@@ -7,7 +7,6 @@ extends AnimatedSprite2D
 static func spawn(parent: Node, sheet: Texture2D, h_frames: int, v_frames: int,
 		frame_count: int, fps: float, pos: Vector2, fx_scale := 1.0) -> void:
 	var sprite := Vfx.new()
-	sprite.texture = sheet
 	sprite.hframes = h_frames
 	sprite.vframes = v_frames
 
