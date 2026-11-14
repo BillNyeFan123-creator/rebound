@@ -49,7 +49,7 @@ animations = [{
 "texture": ExtResource("7_o4126")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle rogue",
 "speed": 5.0
 }]
 
@@ -74,4 +74,4 @@ animation = &"mage idle"
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1796205869]
 position = Vector2(-17, 4)
 sprite_frames = SubResource("SpriteFrames_lu1c8")
-frame_progress = 0.98801184
+animation = &"idle rogue"
