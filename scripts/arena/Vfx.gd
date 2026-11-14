@@ -13,7 +13,8 @@ var _time := 0.0
 
 
 static func spawn(parent: Node, sheet: Texture2D, h_frames: int, v_frames: int,
-		frame_count: int, fps: float, pos: Vector2, fx_scale := 1.0) -> Vfx:
+		frame_count: int, fps: float, pos: Vector2, fx_scale := 1.0,
+		jitter_rotation := true) -> Vfx:
 	var sprite := Vfx.new()
 	sprite.texture = sheet
 	sprite._h_frames = h_frames
@@ -29,6 +30,13 @@ static func spawn(parent: Node, sheet: Texture2D, h_frames: int, v_frames: int,
 	sprite.position = pos
 	sprite.scale = Vector2.ONE * fx_scale
 	sprite.z_index = 5
+	# Additive blending: the effect glows over the scene instead of looking
+	# like a pasted rectangle with hard edges.
+	var mat := CanvasItemMaterial.new()
+	mat.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	sprite.material = mat
+	if jitter_rotation:
+		sprite.rotation = randf_range(0.0, TAU)
 	parent.add_child(sprite)
 	return sprite
 

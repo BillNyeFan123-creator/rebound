@@ -41,8 +41,9 @@ const HIT_VFX_FRAMES := Vector3i(6, 5, 30)  # h, v, count
 
 func take_hit(damage: float) -> void:
 	health -= int(ceil(damage))
-	Vfx.spawn(get_parent(), HIT_VFX, HIT_VFX_FRAMES.x, HIT_VFX_FRAMES.y, HIT_VFX_FRAMES.z,
-		45.0, global_position, 1.4)
+	# Parent to self so the spark follows the enemy while it's alive.
+	Vfx.spawn(self, HIT_VFX, HIT_VFX_FRAMES.x, HIT_VFX_FRAMES.y, HIT_VFX_FRAMES.z,
+		45.0, Vector2.ZERO, 1.4)
 	if health <= 0:
 		die()
 		return

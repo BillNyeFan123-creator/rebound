@@ -116,7 +116,7 @@ func _start_dash(direction: float) -> void:
 		dash_dir = Vector2(direction, 0.0)
 	else:
 		dash_dir = Vector2(facing, 0.0)
-	var fx := Vfx.spawn(get_parent(), DASH_VFX, 6, 5, 30, 60.0, global_position, 1.8)
+	var fx := Vfx.spawn(get_parent(), DASH_VFX, 6, 5, 30, 60.0, global_position, 1.8, false)
 	if dash_dir.x < 0.0:
 		fx.flip_h = true
 	invuln_timer = maxf(invuln_timer, DASH_TIME * dash_time_mult)
