@@ -5,7 +5,10 @@
 [ext_resource type="Script" uid="uid://cjabg4x6vm740" path="res://scripts/SpriteKnightAnimanager.gd" id="3_3li8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
-size = Vector2(100, 100)
+size = Vector2(75, 83)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 86.023254
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=976563110 groups=["player"]]
 position = Vector2(293, 202)
@@ -18,5 +21,11 @@ frame_progress = 0.4779574
 script = ExtResource("3_3li8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533772936]
-position = Vector2(12, 67)
+position = Vector2(5.5, 75.5)
 shape = SubResource("RectangleShape2D_xhfnw")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=2035976012]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1918902232]
+position = Vector2(7, 75)
+shape = SubResource("CircleShape2D_attack")

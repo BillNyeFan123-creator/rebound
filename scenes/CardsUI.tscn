@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/CardsUI.gd" id="1_cardsui"]
+[ext_resource type="Script" path="res://scripts/cardSystem/ui/UnequipZone.gd" id="2_unequip"]
+
+[node name="CardsUI" type="CanvasLayer"]
+script = ExtResource("1_cardsui")
+
+[node name="OpenButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 40.0
+grow_horizontal = 0
+text = "Cards"
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -260.0
+offset_right = 220.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+text = "Cards"
+horizontal_alignment = 1
+
+[node name="Slots" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="CardListScroll" type="ScrollContainer" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
+
+[node name="CardList" type="VBoxContainer" parent="Panel/VBox/CardListScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_unequip")
+
+[node name="CloseButton" type="Button" parent="Panel/VBox"]
+layout_mode = 2
+text = "Close"

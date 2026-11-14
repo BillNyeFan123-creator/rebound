@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/cardSystem/ui/CardPickUI.gd" id="1_pick"]
+
+[node name="CardPickUI" type="CanvasLayer"]
+process_mode = 3
+layer = 5
+script = ExtResource("1_pick")
+
+[node name="Root" type="Control" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Box" type="VBoxContainer" parent="Root/Center"]
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Root/Center/Box"]
+text = "You died - bounce back with a card!"
+horizontal_alignment = 1

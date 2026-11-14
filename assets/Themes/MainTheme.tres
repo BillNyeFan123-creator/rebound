@@ -2,22 +2,83 @@
 
 [ext_resource type="Texture2D" uid="uid://brfasakdwkkas" path="res://assets/GameUI/Buttons/button_rectangle_border.png" id="1_c0r53"]
 [ext_resource type="Texture2D" uid="uid://dnmlj0ef776dp" path="res://assets/GameUI/Buttons/button_rectangle_depth_border.png" id="2_g6dqc"]
+[ext_resource type="Texture2D" uid="uid://bckaxg80fywxh" path="res://assets/GameUI/Panel/input_outline_rectangle.png" id="3_panel"]
+[ext_resource type="Texture2D" uid="uid://kkn1xmka6k21" path="res://assets/GameUI/Panel/input_rectangle.png" id="4_panelin"]
+[ext_resource type="FontFile" uid="uid://dapojxrdh0iqt" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="5_font"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pevhg"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_focus"]
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hover"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
 texture = ExtResource("2_g6dqc")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 14.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hsg2v"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_normal"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
 texture = ExtResource("2_g6dqc")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 14.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_afy8x"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pressed"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 6.0
 texture = ExtResource("1_c0r53")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("3_panel")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel_in"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_panelin")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
 
 [resource]
+default_font = ExtResource("5_font")
+default_font_size = 22
 Button/colors/font_color = Color(0.043137256, 0.43137255, 0.30980393, 1)
+Button/colors/font_disabled_color = Color(0.043137256, 0.43137255, 0.30980393, 0.4)
+Button/colors/font_focus_color = Color(0.043137256, 0.43137255, 0.30980393, 1)
 Button/colors/font_hover_color = Color(0.043137256, 0.43137255, 0.30980393, 1)
 Button/colors/font_hover_pressed_color = Color(0.6, 0.75686276, 0.7254902, 1)
 Button/colors/font_pressed_color = Color(0.6, 0.75686276, 0.7254902, 1)
-Button/font_sizes/font_size = 64
-Button/styles/hover = SubResource("StyleBoxTexture_pevhg")
-Button/styles/normal = SubResource("StyleBoxTexture_hsg2v")
-Button/styles/pressed = SubResource("StyleBoxTexture_afy8x")
+Button/font_sizes/font_size = 28
+Button/styles/focus = SubResource("StyleBoxTexture_focus")
+Button/styles/hover = SubResource("StyleBoxTexture_hover")
+Button/styles/normal = SubResource("StyleBoxTexture_normal")
+Button/styles/pressed = SubResource("StyleBoxTexture_pressed")
+Label/colors/font_color = Color(0.043137256, 0.43137255, 0.30980393, 1)
+Panel/styles/panel = SubResource("StyleBoxTexture_panel")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_panel")
+ScrollContainer/styles/panel = SubResource("StyleBoxTexture_panel_in")

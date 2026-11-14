@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/InstructionUI.gd" id="1_instr"]
+
+[node name="InstructionUI" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_instr")
+
+[node name="Root" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dim" type="ColorRect" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Center" type="CenterContainer" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Root/Center"]
+
+[node name="Box" type="VBoxContainer" parent="Root/Center/Panel"]
+theme_override_constants/separation = 18
+custom_minimum_size = Vector2(560, 0)
+
+[node name="Title" type="Label" parent="Root/Center/Panel/Box"]
+theme_override_font_sizes/font_size = 30
+text = "How to play"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Root/Center/Panel/Box"]
+theme_override_font_sizes/font_size = 24
+theme_override_constants/line_spacing = 10
+text = "A / D  -  move        (arrows work too)
+
+W or Space  -  jump
+
+X or J  -  attack
+
+Shift or K  -  dash (dodges hits)
+
+C  -  card manager
+
+Survive the waves. When you die, you bounce
+back: pick 1 of 3 cards and keep fighting.
+Clear a wave to unlock a new card!"
+
+[node name="OKButton" type="Button" parent="Root/Center/Panel/Box"]
+theme_override_font_sizes/font_size = 26
+custom_minimum_size = Vector2(0, 56)
+text = "OK"

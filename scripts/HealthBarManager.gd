@@ -10,7 +10,7 @@ func _ready() -> void:
 		push_error("HealthHUD could not find a node in the 'player' group")
 		return
 
-	health_bar.max_value = player.MAX_HEALTH
+	health_bar.max_value = player.max_health
 	health_bar.value = player.health
 	player.health_changed.connect(_on_health_changed)
 

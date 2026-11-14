@@ -5,37 +5,108 @@ signal died
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const MAX_HEALTH = 100
+const BASE_MAX_HEALTH = 100
 const HAZARD_DAMAGE = 10
 const INVULN_TIME = 0.5
+const ATTACK_COOLDOWN = 0.4
+const ATTACK_DAMAGE = 1.0
+const ATTACK_RADIUS = 60.0
+const DASH_SPEED = 900.0
+const DASH_TIME = 0.15
+const DASH_COOLDOWN = 0.8
 
-var health: int = MAX_HEALTH
+var health: int = BASE_MAX_HEALTH
 var invuln_timer := 0.0
+# Stats cards can modify (see CardLibrary.gd for what each does).
+var max_health: int = BASE_MAX_HEALTH
+var damage_mult := 1.0
+var speed_mult := 1.0
+var jump_mult := 1.0
+var damage_taken_mult := 1.0
+var heal_on_kill := 0.0
+var attack_cd_mult := 1.0
+var attack_radius_bonus := 0.0
+var dash_cd_mult := 1.0
+var dash_time_mult := 1.0
+var low_hp_speed_mult := 1.0
+var respawn_max_health_bonus := 0
+var attack_cd := 0.0
+var dash_cd := 0.0
+var dash_time := 0.0
+var dash_dir := Vector2.RIGHT
+var facing := 1.0
 
 
 func _ready() -> void:
-	died.connect(_on_died)
 	RunState.set_checkpoint(0, global_position)
 
 
 func _physics_process(delta: float) -> void:
+	attack_cd -= delta
+	dash_cd -= delta
 	if invuln_timer > 0.0:
 		invuln_timer -= delta
+
+	# Dashing overrides normal movement for DASH_TIME seconds.
+	if dash_time > 0.0:
+		dash_time -= delta
+		velocity = dash_dir * DASH_SPEED
+		move_and_slide()
+		check_hazards()
+		return
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY * jump_mult
 
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED * _effective_speed_mult()
+		facing = signf(direction)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED * _effective_speed_mult())
+
+	if Input.is_action_just_pressed("attack") and attack_cd <= 0.0:
+		_do_attack()
+
+	if Input.is_action_just_pressed("dash") and dash_cd <= 0.0:
+		_start_dash(direction)
 
 	move_and_slide()
 	check_hazards()
+
+
+func _effective_speed_mult() -> float:
+	# Adrenaline-style cards: faster when badly hurt.
+	var mult := speed_mult
+	if health <= max_health * 0.3:
+		mult *= low_hp_speed_mult
+	return mult
+
+
+func _do_attack() -> void:
+	attack_cd = ATTACK_COOLDOWN * attack_cd_mult
+	$AttackArea/CollisionShape2D.shape.radius = ATTACK_RADIUS + attack_radius_bonus
+	for body in $AttackArea.get_overlapping_bodies():
+		if body.is_in_group("enemy"):
+			body.take_hit(ATTACK_DAMAGE * damage_mult)
+
+
+const DASH_VFX := preload("res://assets/VFX/dash.png")
+
+
+func _start_dash(direction: float) -> void:
+	if direction != 0.0:
+		dash_dir = Vector2(direction, 0.0)
+	else:
+		dash_dir = Vector2(facing, 0.0)
+	Vfx.spawn(get_parent(), DASH_VFX, 6, 5, 30, 60.0, global_position, 0.35)
+	invuln_timer = maxf(invuln_timer, DASH_TIME * dash_time_mult)
+	dash_time = DASH_TIME * dash_time_mult
+	dash_cd = DASH_COOLDOWN * dash_cd_mult
+
 
 func check_hazards() -> void:
 	for i in get_slide_collision_count():
@@ -47,33 +118,40 @@ func check_hazards() -> void:
 
 
 func take_damage(amount: int) -> void:
-	print("take_damage, health: ", health, " invuln: ", invuln_timer)
 	if invuln_timer > 0.0 or health <= 0:
 		return
 
-	health = max(health - amount, 0)
+	health = max(health - maxi(1, roundi(amount * damage_taken_mult)), 0)
 	invuln_timer = INVULN_TIME
-	health_changed.emit(health, MAX_HEALTH)
+	health_changed.emit(health, max_health)
 
 	if health == 0:
 		died.emit()
 
 
 func heal(amount: int) -> void:
-	health = min(health + amount, MAX_HEALTH)
-	health_changed.emit(health, MAX_HEALTH)
+	health = mini(health + amount, max_health)
+	health_changed.emit(health, max_health)
+
+
+func on_enemy_killed() -> void:
+	# Lifesteal hook, called by the WaveManager when an enemy dies.
+	if heal_on_kill > 0.0:
+		heal(roundi(heal_on_kill))
 
 
 func reset_health() -> void:
-	health = MAX_HEALTH
+	health = max_health
 	invuln_timer = 0.0
-	health_changed.emit(health, MAX_HEALTH)
+	health_changed.emit(health, max_health)
 
 
-func _on_died() -> void:
-	# Respawn at the checkpoint instead of reloading the level.
-	# Requires the RunState autoload with checkpoint_pos set.
+func respawn() -> void:
+	# Called by the WaveManager after the player bounces back with a card.
+	if respawn_max_health_bonus > 0:
+		max_health += respawn_max_health_bonus
 	RunState.on_death()
 	global_position = RunState.checkpoint_pos
 	velocity = Vector2.ZERO
+	dash_time = 0.0
 	reset_health()
