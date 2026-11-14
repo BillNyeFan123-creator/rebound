@@ -16,6 +16,8 @@ gradient = SubResource("Gradient_zombie")
 fill_to = Vector2(0, 1)
 
 [node name="Zombie" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_enemy")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
