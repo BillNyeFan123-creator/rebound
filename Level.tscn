@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqhcgdovgoslt" path="res://scenes/HealthHUD.tscn" id="1_2nifc"]
 [ext_resource type="PackedScene" uid="uid://cisd4joxypi0y" path="res://scenes/Player.tscn" id="1_bexhn"]
+[ext_resource type="PackedScene" uid="uid://bjfgqwmwvxngu" path="res://scenes/Obstacle.tscn" id="2_t7iv1"]
 [ext_resource type="Texture2D" uid="uid://covjq5dkg8058" path="res://assets/Backgrounds/Lava/background.png" id="1_bg"]
 [ext_resource type="Texture2D" uid="uid://uo8xcayubcpn" path="res://assets/Backgrounds/Tilesetv3.png" id="1_q4iis"]
 [ext_resource type="Texture2D" uid="uid://cprb4twv05sps" path="res://assets/Backgrounds/Lava/middle-rocks.png" id="2_rocks"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" path="res://scenes/Enemy.tscn" id="5_enemy"]
 [ext_resource type="PackedScene" path="res://scenes/CardPickUI.tscn" id="6_pick"]
 [ext_resource type="PackedScene" path="res://scenes/InstructionUI.tscn" id="7_instr"]
+[ext_resource type="AudioStream" uid="uid://cxscbn1b585hl" path="res://assets/Sounds/bgmusic(1).wav" id="4_wkftn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q6vxt"]
 
@@ -70,6 +72,12 @@ offset_bottom = 586.0
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_q6vxt")
 stretch_mode = 1
+
+[node name="Obstacle" parent="." unique_id=1860555685 groups=["obstacle"] instance=ExtResource("2_t7iv1")]
+position = Vector2(653, 461)
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="." unique_id=462253595]
+stream = ExtResource("4_wkftn")
 
 [node name="CardsUI" parent="." unique_id=1448123890 instance=ExtResource("3_cardsui")]
 
