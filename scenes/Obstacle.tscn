@@ -9,10 +9,12 @@ position = Vector2(2, 1)
 physics_material_override = SubResource("PhysicsMaterial_yced0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1938044369]
-position = Vector2(6, 6)
+position = Vector2(62.999996, 52.000004)
+scale = Vector2(5, 5)
 texture = ExtResource("1_jde5u")
 region_enabled = true
 region_rect = Rect2(0, 2.5392075, 15.808998, 13.460793)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=877452180]
-position = Vector2(6, 6)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1438503974]
+position = Vector2(26, 20)
+polygon = PackedVector2Array(-4, 65, 37, -1, 76, 65)

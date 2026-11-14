@@ -15,10 +15,19 @@ run/main_scene="uid://drcju0ep61atp"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+RunState="*uid://ckw2dos0t3ndo"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+player="player group"
+obstacle="obstacle group"
 
 [physics]
 

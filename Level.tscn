@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bi2w51p3sjm1n"]
 
+[ext_resource type="PackedScene" uid="uid://dqhcgdovgoslt" path="res://scenes/HealthHUD.tscn" id="1_2nifc"]
 [ext_resource type="PackedScene" uid="uid://cisd4joxypi0y" path="res://scenes/Player.tscn" id="1_bexhn"]
+[ext_resource type="PackedScene" uid="uid://bjfgqwmwvxngu" path="res://scenes/Obstacle.tscn" id="2_t7iv1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q6vxt"]
 
@@ -9,7 +11,10 @@ size = Vector2(1226, 20)
 
 [node name="Level" type="Node2D" unique_id=723381019]
 
+[node name="HealthHUD" parent="." unique_id=172373582 instance=ExtResource("1_2nifc")]
+
 [node name="Player" parent="." unique_id=976563110 instance=ExtResource("1_bexhn")]
+position = Vector2(491, 487)
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=934898494]
 physics_material_override = SubResource("PhysicsMaterial_q6vxt")
@@ -17,3 +22,6 @@ physics_material_override = SubResource("PhysicsMaterial_q6vxt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1101255283]
 position = Vector2(582, 557)
 shape = SubResource("RectangleShape2D_q6vxt")
+
+[node name="Obstacle" parent="." unique_id=1860555685 groups=["obstacle"] instance=ExtResource("2_t7iv1")]
+position = Vector2(653, 461)

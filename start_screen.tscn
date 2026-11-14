@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://drcju0ep61atp"]
 
 [ext_resource type="Theme" uid="uid://b7otltoatbmd0" path="res://assets/Themes/MainTheme.tres" id="1_ncxyx"]
+[ext_resource type="Texture2D" uid="uid://0qtf5gjnqp6b" path="res://assets/GameUI/36ac0783-a3a9-4ea3-946b-9bde0b71cbfa.png" id="2_k1na2"]
 [ext_resource type="Script" uid="uid://c66plo1a4mxp1" path="res://scripts/StartButtonManager.gd" id="2_pevhg"]
 [ext_resource type="Texture2D" uid="uid://sdg2bp2tcw2i" path="res://assets/GameUI/Title/title(1).png" id="3_afy8x"]
 
@@ -30,6 +31,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ncxyx")
 script = SubResource("GDScript_pevhg")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=726715918]
+layout_mode = 0
+offset_left = -171.0
+offset_top = -111.0
+offset_right = 1501.0
+offset_bottom = 830.0
+texture = ExtResource("2_k1na2")
 
 [node name="Button" type="Button" parent="." unique_id=1389527646]
 layout_mode = 1
