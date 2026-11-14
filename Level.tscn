@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhcgdovgoslt" path="res://scenes/HealthHUD.tscn" id="1_2nifc"]
 [ext_resource type="PackedScene" uid="uid://cisd4joxypi0y" path="res://scenes/Player.tscn" id="1_bexhn"]
 [ext_resource type="PackedScene" uid="uid://bjfgqwmwvxngu" path="res://scenes/Obstacle.tscn" id="2_t7iv1"]
+[ext_resource type="AudioStream" uid="uid://cxscbn1b585hl" path="res://assets/Sounds/bgmusic(1).wav" id="4_wkftn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q6vxt"]
 
@@ -25,3 +26,6 @@ shape = SubResource("RectangleShape2D_q6vxt")
 
 [node name="Obstacle" parent="." unique_id=1860555685 groups=["obstacle"] instance=ExtResource("2_t7iv1")]
 position = Vector2(653, 461)
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="." unique_id=462253595]
+stream = ExtResource("4_wkftn")

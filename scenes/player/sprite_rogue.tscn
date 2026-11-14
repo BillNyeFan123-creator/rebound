@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://dyd0y408ih1id" path="res://assets/Player/Rogue/Idle Anim/rogue_idle_0.png" id="1_d3wef"]
+[ext_resource type="Texture2D" uid="uid://bpgg0yntgpvpx" path="res://assets/Player/Rogue/Idle Anim/rogue_idle_1.png" id="2_o4126"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lu1c8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d3wef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o4126")
+}],
+"loop": 1,
+"name": &"idle rogue",
+"speed": 2.5
+}]
+
+[node name="SpriteRogue" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_lu1c8")
+animation = &"idle rogue"
