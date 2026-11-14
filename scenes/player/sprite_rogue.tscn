@@ -13,10 +13,10 @@ animations = [{
 "texture": ExtResource("2_o4126")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle rogue",
 "speed": 5.0
 }]
 
 [node name="SpriteRogue" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_lu1c8")
-animation = &"default"
+animation = &"idle rogue"
