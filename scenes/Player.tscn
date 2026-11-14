@@ -58,6 +58,7 @@ position = Vector2(293, 202)
 script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=619924336]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_vrxvm")
 animation = &"knight idle"
 frame_progress = 0.86780244
