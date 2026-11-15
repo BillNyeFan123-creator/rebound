@@ -9,6 +9,11 @@ func _ready() -> void:
 	add_to_group("camera")
 	position_smoothing_enabled = true
 	position_smoothing_speed = 6.0
+	# Never show outside the arena.
+	limit_left = 0
+	limit_top = 0
+	limit_right = 1152
+	limit_bottom = 648
 
 
 func shake(amount: float) -> void:
