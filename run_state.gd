@@ -7,6 +7,7 @@ var checkpoint_pos := Vector2.ZERO
 var rewarded_checkpoint_id := -2
 var time_since_respawn := 0.0
 var deaths := 0
+var run_count := 1  # attempt number; increments on every death
 
 func _process(delta: float) -> void:
 	time_since_respawn += delta

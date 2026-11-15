@@ -14,6 +14,14 @@ corner_radius_bottom_left = 4
 [node name="HealthHUD" type="CanvasLayer" unique_id=172373582]
 script = ExtResource("1_aoj4p")
 
+[node name="RunLabel" type="Label" parent="." unique_id=1954694675]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 400.0
+offset_bottom = 60.0
+text = "RUN 1 - WAVE 0"
+
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1954694674]
 texture_filter = 1
 anchors_preset = -1

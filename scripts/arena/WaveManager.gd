@@ -3,6 +3,8 @@ extends Node
 # the game pauses and they bounce back with a card (pick 1 of 3), then respawn
 # into the same fight — the wave keeps its progress.
 
+signal wave_started(wave: int)
+
 const ARENA_MIN := Vector2(40, 80)     # spawn area, inset from screen edges
 const ARENA_MAX := Vector2(1112, 500)  # keep above the floor so enemies can land
 const SPAWN_INTERVAL := 0.6
@@ -27,6 +29,7 @@ var between_waves := true
 
 
 func _ready() -> void:
+	add_to_group("wave_manager")
 	pick_ui.card_chosen.connect(_on_card_chosen)
 	player.died.connect(_on_player_died)
 	break_timer = 1.5  # short grace period before wave 1
@@ -49,6 +52,7 @@ func _start_next_wave() -> void:
 	to_spawn = BASE_WAVE_SIZE + wave
 	spawn_timer = 0.0
 	between_waves = false
+	wave_started.emit(wave)
 	# Every 5th wave, a boss joins the roster.
 	if boss_enemy_scene and wave % 5 == 0:
 		_spawn_boss()
@@ -108,6 +112,7 @@ func _on_enemy_died() -> void:
 
 
 func _on_player_died() -> void:
+	RunState.run_count += 1
 	# Fizzle out: fade + shrink the knight, THEN pause and offer cards.
 	var sprite = player.get_node_or_null("SpriteKnight")
 	if sprite:
