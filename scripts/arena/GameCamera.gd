@@ -3,7 +3,7 @@ extends Camera2D
 # Player-follow camera with decaying screen shake and a subtle zoom "punch"
 # on impacts.
 
-const BASE_ZOOM := 1.5
+const BASE_ZOOM := 1.4
 const LOW_HP_ZOOM := 1.65
 const LOW_HP_THRESHOLD := 0.3
 
@@ -20,8 +20,8 @@ func _ready() -> void:
 	# Never show outside the arena.
 	limit_left = 0
 	limit_top = 0
-	limit_right = 1728
-	limit_bottom = 972
+	limit_right = 1613
+	limit_bottom = 907
 
 
 func shake(amount: float) -> void:

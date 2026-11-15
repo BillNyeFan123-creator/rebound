@@ -103,4 +103,15 @@ func _on_card_chosen(card: Card) -> void:
 	pick_ui.close()
 	get_tree().paused = false
 	player.respawn()
-	# The wave keeps its progress — remaining enemies stay where they are.
+	# Death resets the run: clear the field and start over from wave 1.
+	_reset_to_wave_one()
+
+
+func _reset_to_wave_one() -> void:
+	wave = 0
+	alive = 0
+	to_spawn = 0
+	for child in get_children():
+		if child is Enemy:
+			child.queue_free()
+	break_timer = 1.5  # short grace period before wave 1 comes in

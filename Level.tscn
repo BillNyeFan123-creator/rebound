@@ -18,31 +18,33 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6vxt"]
 size = Vector2(1250, 145)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6vxt"]
+atlas = ExtResource("1_q4iis")
+region = Rect2(127.85512, 320.87448, 47.184128, 45.298157)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
 size = Vector2(40, 800)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
 size = Vector2(1250, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6vxt"]
-atlas = ExtResource("1_q4iis")
-region = Rect2(127.85512, 320.87448, 47.184128, 45.298157)
-
 [node name="Level" type="Node2D" unique_id=723381019]
 
 [node name="Background" type="TextureRect" parent="." unique_id=387135978]
 texture_repeat = 2
-offset_right = 576.0
-offset_bottom = 324.0
+offset_left = -1943.0
+offset_top = -98.0
+offset_right = -441.0
+offset_bottom = 226.0
 scale = Vector2(3, 3)
 texture = ExtResource("1_bg")
 stretch_mode = 1
 
 [node name="LavaFloor" type="TextureRect" parent="." unique_id=1571574014]
 texture_repeat = 2
-offset_left = -15.0
+offset_left = -2096.0
 offset_top = 490.0
-offset_right = 369.0
+offset_right = -390.66663
 offset_bottom = 550.0
 scale = Vector2(3, 3)
 texture = ExtResource("3_lava")
@@ -50,9 +52,9 @@ stretch_mode = 1
 
 [node name="MidRocks" type="TextureRect" parent="." unique_id=589552363]
 texture_repeat = 2
-offset_left = -241.0
+offset_left = -1189.0
 offset_top = -41.0
-offset_right = 353.6667
+offset_right = 73.333374
 offset_bottom = 199.0
 scale = Vector2(3, 3)
 texture = ExtResource("2_rocks")
@@ -66,32 +68,32 @@ position = Vector2(575, 419)
 [node name="Floor" type="StaticBody2D" parent="." unique_id=934898494]
 physics_material_override = SubResource("PhysicsMaterial_q6vxt")
 
-[node name="Boundary" type="StaticBody2D" parent="."]
-
-[node name="Left" type="CollisionShape2D" parent="Boundary"]
-position = Vector2(-20, 324)
-shape = SubResource("RectangleShape2D_wall")
-
-[node name="Right" type="CollisionShape2D" parent="Boundary"]
-position = Vector2(1172, 324)
-shape = SubResource("RectangleShape2D_wall")
-
-[node name="Ceiling" type="CollisionShape2D" parent="Boundary"]
-position = Vector2(576, -20)
-shape = SubResource("RectangleShape2D_ceiling")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1101255283]
 position = Vector2(584, 615.5)
 shape = SubResource("RectangleShape2D_q6vxt")
 
 [node name="TextureRect" type="TextureRect" parent="Floor" unique_id=1665761160]
-offset_left = -45.0
+offset_left = -1900.0001
 offset_top = 542.0
-offset_right = 371.0
+offset_right = -577.0001
 offset_bottom = 587.0
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_q6vxt")
 stretch_mode = 1
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=923788566]
+
+[node name="Left" type="CollisionShape2D" parent="Boundary" unique_id=1441848702]
+position = Vector2(-20, 324)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Right" type="CollisionShape2D" parent="Boundary" unique_id=1515473910]
+position = Vector2(1172, 324)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Ceiling" type="CollisionShape2D" parent="Boundary" unique_id=1028760252]
+position = Vector2(576, -20)
+shape = SubResource("RectangleShape2D_ceiling")
 
 [node name="bgmusic" type="AudioStreamPlayer" parent="." unique_id=462253595]
 stream = ExtResource("4_wkftn")
