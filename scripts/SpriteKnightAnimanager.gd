@@ -8,6 +8,7 @@ const ANIM_WALK_LEFT := "knight walk left"
 const ANIM_WALK_RIGHT := "knight walk right"
 const ANIM_ATTACK_LEFT := "knight attack left"
 const ANIM_ATTACK_RIGHT := "knight attack right"
+const ANIM_ATTACK_FRONT := "knight attack front"
 
 const DASH_STRETCH_X := 1.35
 const DASH_SQUASH_Y := 0.8
@@ -28,7 +29,15 @@ func _on_attack_started() -> void:
 	var player := get_parent()
 	_attacking = true
 	scale = _base_scale
-	if player and player.facing >= 0.0:
+	# Standing still? Swing toward the camera; moving? swing in travel direction.
+	if player and absf(player.velocity.x) > 10.0:
+		if player.facing >= 0.0:
+			play(ANIM_ATTACK_RIGHT)
+		else:
+			play(ANIM_ATTACK_LEFT)
+	elif sprite_frames.has_animation("knight attack front"):
+		play("knight attack front")
+	elif player and player.facing >= 0.0:
 		play(ANIM_ATTACK_RIGHT)
 	else:
 		play(ANIM_ATTACK_LEFT)
@@ -41,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 
 	# Attack swing overrides everything until the animation finishes.
 	if _attacking:
-		if is_playing() and animation in [ANIM_ATTACK_LEFT, ANIM_ATTACK_RIGHT]:
+		if is_playing() and animation in [ANIM_ATTACK_LEFT, ANIM_ATTACK_RIGHT, ANIM_ATTACK_FRONT]:
 			return
 		_attacking = false
 
