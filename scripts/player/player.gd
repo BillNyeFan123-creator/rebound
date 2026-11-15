@@ -121,7 +121,6 @@ func _start_dash(direction: float) -> void:
 func check_hazards() -> void:
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
-		print("Hit: ", collider.name, " groups: ", collider.get_groups())
 		if collider is Node and collider.is_in_group("obstacle"):
 			take_damage(HAZARD_DAMAGE)
 			return

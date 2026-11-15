@@ -11,6 +11,5 @@ func _init() -> void:
 
 func apply(player: Node) -> void:
 	player.damage_mult *= damage_mult
-	print("Damage Mult: ", player.damage_mult)
 
 	
