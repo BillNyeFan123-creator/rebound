@@ -113,7 +113,18 @@ func _on_enemy_died() -> void:
 
 func _on_player_died() -> void:
 	RunState.run_count += 1
-	# Fizzle out: fade + shrink the knight, THEN pause and offer cards.
+	# Every bounce back reveals one brand-new card option (until the
+	# library is exhausted), so the offers change from death to death.
+	CardManager.unlock_random()
+	# Guarantee 3 unequipped cards to offer, unlocking more if needed.
+	for i in 3:
+		var candidates := CardManager.unlocked.filter(
+			func(c: Card): return not CardManager.equipped.has(c)
+		)
+		if candidates.size() >= 3:
+			break
+		if CardManager.unlock_random() == null:
+			break  # everything is unlocked
 	var sprite = player.get_node_or_null("SpriteKnight")
 	if sprite:
 		var tw := sprite.create_tween()
@@ -126,16 +137,6 @@ func _on_player_died() -> void:
 
 
 func _open_card_pick() -> void:
-	# Guarantee 3 unequipped cards to offer, unlocking new ones on the spot
-	# if the player owns too few.
-	for i in 3:
-		var candidates := CardManager.unlocked.filter(
-			func(c: Card): return not CardManager.equipped.has(c)
-		)
-		if candidates.size() >= 3:
-			break
-		if CardManager.unlock_random() == null:
-			break  # everything is unlocked
 	get_tree().paused = true
 	pick_ui.open()
 
