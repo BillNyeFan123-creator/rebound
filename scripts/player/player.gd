@@ -173,3 +173,5 @@ func respawn() -> void:
 	velocity = Vector2.ZERO
 	dash_time = 0.0
 	reset_health()
+	# Grace period: ceiling spawners can drop slimes right on the spawn point.
+	invuln_timer = 1.5
