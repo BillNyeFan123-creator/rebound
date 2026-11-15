@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 RunState="*uid://ckw2dos0t3ndo"
 CardManager="*res://scripts/cardSystem/CardManager.gd"
+Sfx="*res://scripts/Sfx.gd"
 
 [display]
 

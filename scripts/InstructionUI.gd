@@ -16,5 +16,6 @@ func _ready() -> void:
 
 
 func _on_ok_pressed() -> void:
+	Sfx.play("click", -4.0)
 	root.visible = false
 	get_tree().paused = false

@@ -27,12 +27,17 @@ func _ready() -> void:
 func _on_open_pressed() -> void:
 	panel.visible = not panel.visible
 	get_tree().paused = panel.visible
+	if panel.visible:
+		Sfx.play("ui_open", -4.0)
+	else:
+		Sfx.play("ui_close", -4.0)
 	refresh()
 
 
 func _on_close_pressed() -> void:
 	panel.visible = false
 	get_tree().paused = false
+	Sfx.play("ui_close", -4.0)
 
 
 func refresh() -> void:

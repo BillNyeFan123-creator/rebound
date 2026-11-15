@@ -30,7 +30,7 @@ func unlock_random() -> Card:
 	var card: Card = pool.pick_random()
 	unlocked.append(card)
 	loadout_changed.emit()
-	print("New card unlocked: ", card.card_name, " - ", card.description)
+	Sfx.play("unlock", -3.0)
 	return card
 
 
@@ -41,6 +41,7 @@ func equip(card: Card) -> bool:
 		return false
 	equipped.append(card)
 	loadout_changed.emit()
+	Sfx.play("click", -4.0)
 	return true
 
 
@@ -49,6 +50,7 @@ func remove(card: Card) -> bool:
 		return false
 	equipped.erase(card)
 	loadout_changed.emit()
+	Sfx.play("click", -10.0)
 	return true
 
 

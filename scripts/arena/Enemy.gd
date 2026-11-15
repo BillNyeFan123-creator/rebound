@@ -75,6 +75,7 @@ func die() -> void:
 	var cam = get_tree().get_first_node_in_group("camera")
 	if cam:
 		cam.shake(3.0)
+	Sfx.play("kill", -4.0)
 	died.emit()
 	# Play the death animation, then remove the body.
 	if anim and anim.sprite_frames.has_animation("death"):

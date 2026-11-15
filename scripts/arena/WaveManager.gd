@@ -52,6 +52,7 @@ func _start_next_wave() -> void:
 	# Every 5th wave, a boss joins the roster.
 	if boss_enemy_scene and wave % 5 == 0:
 		_spawn_boss()
+		Sfx.play("boss_spawn", -2.0)
 	print("Wave ", wave, " starting: ", to_spawn, " enemies")
 
 

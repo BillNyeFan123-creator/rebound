@@ -102,6 +102,7 @@ func _effective_speed_mult() -> float:
 
 func _do_attack() -> void:
 	attack_cd = ATTACK_COOLDOWN * attack_cd_mult
+	Sfx.play("attack", -8.0)
 	$AttackArea/CollisionShape2D.shape.radius = ATTACK_RADIUS + attack_radius_bonus
 	for body in $AttackArea.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
@@ -113,6 +114,7 @@ func _start_dash(direction: float) -> void:
 		dash_dir = Vector2(direction, 0.0)
 	else:
 		dash_dir = Vector2(facing, 0.0)
+	Sfx.play("dash", -6.0)
 	invuln_timer = maxf(invuln_timer, DASH_TIME * dash_time_mult)
 	dash_time = DASH_TIME * dash_time_mult
 	dash_cd = DASH_COOLDOWN * dash_cd_mult
@@ -134,6 +136,7 @@ func take_damage(amount: int) -> void:
 	invuln_timer = INVULN_TIME
 	health_changed.emit(health, max_health)
 	_shake(5.0)
+	Sfx.play("hurt", -4.0)
 
 	if health == 0:
 		died.emit()
@@ -168,6 +171,7 @@ func respawn() -> void:
 	if respawn_max_health_bonus > 0:
 		max_health += respawn_max_health_bonus
 	RunState.on_death()
+	Sfx.play("respawn", -4.0)
 
 	var sprite = get_node_or_null("SpriteKnight")
 	var base_scale := Vector2.ONE
