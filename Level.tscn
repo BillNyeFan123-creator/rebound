@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bq4jyhm7e1q5w" path="res://scripts/arena/WaveManager.gd" id="4_waves"]
 [ext_resource type="AudioStream" uid="uid://cxscbn1b585hl" path="res://assets/Sounds/bgmusic(1).wav" id="4_wkftn"]
 [ext_resource type="PackedScene" path="res://scenes/Enemies/BigSlime.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" uid="uid://dfc4lnwdviwss" path="res://scenes/Enemy.tscn" id="8_small"]
 [ext_resource type="PackedScene" path="res://scenes/CardPickUI.tscn" id="6_pick"]
 [ext_resource type="PackedScene" path="res://scenes/InstructionUI.tscn" id="7_instr"]
 
@@ -110,6 +111,7 @@ visible = false
 [node name="WaveManager" type="Node" parent="." unique_id=1387957286]
 script = ExtResource("4_waves")
 enemy_scene = ExtResource("5_enemy")
+small_enemy_scene = ExtResource("8_small")
 pick_ui_path = NodePath("../CardPickUI")
 
 [node name="menumusic" type="AudioStreamPlayer" parent="." unique_id=1051346311]

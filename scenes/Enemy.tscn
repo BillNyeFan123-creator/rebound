@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dfc4lnwdviwss"]
 
 [ext_resource type="Script" uid="uid://bpttpf4o48mqm" path="res://scripts/arena/Enemy.gd" id="1_enemy"]
-[ext_resource type="Texture2D" uid="uid://cqaxxjci2kjq2" path="res://scenes/Enemies/Big Slime/big_slime_death_32x32.png" id="2_5wwv6"]
-[ext_resource type="Texture2D" uid="uid://b8i4jl384p4ou" path="res://scenes/Enemies/Big Slime/big_slime_get_hit_32x32.png" id="3_1vja8"]
-[ext_resource type="Texture2D" uid="uid://dm7beelg48dun" path="res://scenes/Enemies/Big Slime/big_slime_idle_32x32.png" id="4_iwav8"]
-[ext_resource type="Texture2D" uid="uid://ct4v1lra58p65" path="res://scenes/Enemies/Big Slime/big_slime_jump_32x32.png" id="5_1i2q2"]
+[ext_resource type="Texture2D" uid="uid://cqaxxjci2kjq2" path="res://scenes/Enemies/Small Slime/small_slime_dead_32x32.png" id="2_5wwv6"]
+[ext_resource type="Texture2D" uid="uid://b8i4jl384p4ou" path="res://scenes/Enemies/Small Slime/small_slime_get_hit_32x32.png" id="3_1vja8"]
+[ext_resource type="Texture2D" uid="uid://dm7beelg48dun" path="res://scenes/Enemies/Small Slime/small_slime_idle_32x32.png" id="4_iwav8"]
+[ext_resource type="Texture2D" uid="uid://ct4v1lra58p65" path="res://scenes/Enemies/Small Slime/small_slime_jump_32x32.png" id="5_1i2q2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(24, 24)
+size = Vector2(28, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ly5gv"]
 atlas = ExtResource("2_5wwv6")
@@ -159,22 +159,26 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
-size = Vector2(30, 30)
+size = Vector2(36, 26)
 
-[node name="Zombie" type="CharacterBody2D" unique_id=1835234325 groups=["enemy"]]
+[node name="SmallSlime" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
+max_health = 1
+speed = 80.0
+contact_damage = 5
 script = ExtResource("1_enemy")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=31582424]
 shape = SubResource("RectangleShape2D_body")
 
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=1992444640]
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rgvph")
 animation = &"idle"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1205436785]
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=352324162]
-position = Vector2(-1, 28)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hurt")

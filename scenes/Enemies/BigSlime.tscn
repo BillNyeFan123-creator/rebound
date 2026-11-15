@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cqaxxjci2kjq2" path="res://scenes/Enemies/Big Slime/big_slime_death_32x32.png" id="5_death"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(24, 20)
+size = Vector2(60, 44)
 
 [sub_resource type="AtlasTexture" id="at_death_0"]
 atlas = ExtResource("5_death")
@@ -159,7 +159,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
-size = Vector2(32, 26)
+size = Vector2(72, 52)
 
 [node name="BigSlime" type="CharacterBody2D" unique_id=1973961784 groups=["enemy"]]
 collision_layer = 2
@@ -167,6 +167,7 @@ collision_mask = 3
 script = ExtResource("1_enemy")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=511865099]
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_body")
 
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=473419677]
@@ -177,4 +178,5 @@ animation = &"idle"
 [node name="Hurtbox" type="Area2D" parent="." unique_id=361417128]
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1531270153]
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_hurt")

@@ -10,6 +10,7 @@ const BREAK_TIME := 3.0
 const BASE_WAVE_SIZE := 2
 
 @export var enemy_scene: PackedScene
+@export var small_enemy_scene: PackedScene  # faster, weaker type, mixed in later waves
 @export var pick_ui_path: NodePath
 
 var wave := 0
@@ -52,7 +53,11 @@ func _start_next_wave() -> void:
 func _spawn_enemy() -> void:
 	to_spawn -= 1
 	alive += 1
-	var enemy: Node2D = enemy_scene.instantiate()
+	var scene := enemy_scene
+	# From wave 2 on, ~35% of spawns are the small fast type.
+	if small_enemy_scene and wave >= 2 and randf() < 0.35:
+		scene = small_enemy_scene
+	var enemy: Node2D = scene.instantiate()
 	enemy.global_position = _random_edge_position()
 	enemy.died.connect(_on_enemy_died)
 	add_child(enemy)
