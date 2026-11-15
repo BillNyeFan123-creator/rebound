@@ -164,7 +164,7 @@ size = Vector2(36, 26)
 
 [node name="SmallSlime" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 6
 max_health = 1
 speed = 80.0
 contact_damage = 5
@@ -185,6 +185,7 @@ texture = ExtResource("20_light")
 texture_scale = 0.9
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1205436785]
+collision_mask = 1
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=352324162]
 position = Vector2(0, 4)

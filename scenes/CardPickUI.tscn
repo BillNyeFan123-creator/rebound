@@ -24,13 +24,19 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Box" type="VBoxContainer" parent="Root/Center"]
-theme_override_constants/separation = 16
+[node name="Panel" type="PanelContainer" parent="Root/Center"]
 
-[node name="RunInfo" type="Label" parent="Root/Center/Box"]
+[node name="VBox" type="VBoxContainer" parent="Root/Center/Panel"]
+theme_override_constants/separation = 20
+
+[node name="RunInfo" type="Label" parent="Root/Center/Panel/VBox"]
 text = "Run #1"
 horizontal_alignment = 1
 
-[node name="Title" type="Label" parent="Root/Center/Box"]
+[node name="Title" type="Label" parent="Root/Center/Panel/VBox"]
+theme_override_font_sizes/font_size = 30
 text = "You died - bounce back with a card!"
 horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="Root/Center/Panel/VBox"]
+theme_override_constants/separation = 20

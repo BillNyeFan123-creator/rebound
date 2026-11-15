@@ -93,6 +93,7 @@ script = ExtResource("11_lavalight")
 position = Vector2(575, 419)
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=934898494]
+collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_q6vxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1101255283]
@@ -109,6 +110,7 @@ texture = SubResource("AtlasTexture_q6vxt")
 stretch_mode = 1
 
 [node name="Boundary" type="StaticBody2D" parent="." unique_id=923788566]
+collision_layer = 4
 
 [node name="Left" type="CollisionShape2D" parent="Boundary" unique_id=1441848702]
 position = Vector2(-20, 324)
