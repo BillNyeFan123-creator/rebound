@@ -97,7 +97,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_isvm2")
 }],
 "loop": 1,
-"name": &"die",
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -108,7 +108,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_axa8o")
 }],
 "loop": 1,
-"name": &"hit",
+"name": &"get_hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -169,7 +169,7 @@ script = ExtResource("1_enemy")
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=31582424]
 shape = SubResource("RectangleShape2D_body")
 
-[node name="Big slime" type="AnimatedSprite2D" parent="." unique_id=1992444640]
+[node name="Anim" type="AnimatedSprite2D" parent="." unique_id=1992444640]
 sprite_frames = SubResource("SpriteFrames_rgvph")
 animation = &"idle"
 
