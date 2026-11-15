@@ -72,7 +72,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2xq6x")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"knight attack front",
 "speed": 5.0
 }, {
