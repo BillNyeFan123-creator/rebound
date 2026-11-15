@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal health_changed(current: int, maximum: int)
 signal died
+signal attack_started
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -103,6 +104,7 @@ func _effective_speed_mult() -> float:
 func _do_attack() -> void:
 	attack_cd = ATTACK_COOLDOWN * attack_cd_mult
 	Sfx.play("attack", -8.0)
+	attack_started.emit()
 	$AttackArea/CollisionShape2D.shape.radius = ATTACK_RADIUS + attack_radius_bonus
 	for body in $AttackArea.get_overlapping_bodies():
 		if body.is_in_group("enemy"):

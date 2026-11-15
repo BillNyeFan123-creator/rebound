@@ -10,6 +10,56 @@
 [ext_resource type="Texture2D" uid="uid://dh7u6cb1j2pyc" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_1.png" id="8_wl1"]
 [ext_resource type="Texture2D" uid="uid://dvqi5a2sg6qbt" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_2.png" id="9_wl2"]
 [ext_resource type="Texture2D" uid="uid://copc0qqi1rbf1" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_3.png" id="10_wl3"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/attack anim/right/knightattackright.png" id="11_ar"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/attack anim/left/knightattackleft.png" id="12_al"]
+
+[sub_resource type="AtlasTexture" id="at_ar_0"]
+atlas = ExtResource("11_ar")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_ar_1"]
+atlas = ExtResource("11_ar")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_ar_2"]
+atlas = ExtResource("11_ar")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_ar_3"]
+atlas = ExtResource("11_ar")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_ar_4"]
+atlas = ExtResource("11_ar")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_ar_5"]
+atlas = ExtResource("11_ar")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_al_0"]
+atlas = ExtResource("12_al")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_al_1"]
+atlas = ExtResource("12_al")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_al_2"]
+atlas = ExtResource("12_al")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_al_3"]
+atlas = ExtResource("12_al")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_al_4"]
+atlas = ExtResource("12_al")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_al_5"]
+atlas = ExtResource("12_al")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vrxvm"]
 animations = [{
@@ -57,6 +107,52 @@ animations = [{
 "loop": 1,
 "name": &"knight walk right",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_ar_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_ar_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_ar_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_ar_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_ar_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_ar_5")
+}],
+"loop": 0,
+"name": &"knight attack right",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_al_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_al_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_al_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_al_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_al_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_al_5")
+}],
+"loop": 0,
+"name": &"knight attack left",
+"speed": 14.0
 }]
 
 [node name="SpriteKnight" type="AnimatedSprite2D" unique_id=1973205071]

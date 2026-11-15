@@ -22,7 +22,7 @@ func open() -> void:
 	for child in buttons_box.get_children():
 		child.queue_free()
 
-	$Root/Center/Box/RunInfo.text = "Run #%d ends here" % RunState.run_count
+s	$Root/Center/Box/RunInfo.text = "Run #%d ends here" % RunState.run_count
 
 	var pool := CardManager.unlocked.filter(
 		func(c: Card): return not CardManager.equipped.has(c)
