@@ -4,9 +4,12 @@ extends Camera2D
 # on impacts.
 
 const BASE_ZOOM := 1.5
+const LOW_HP_ZOOM := 1.65
+const LOW_HP_THRESHOLD := 0.3
 
 var _shake_amount := 0.0
 var _zoom_kick := 0.0
+var _current_base := BASE_ZOOM
 
 
 func _ready() -> void:
@@ -33,6 +36,13 @@ func _process(delta: float) -> void:
 	else:
 		offset = Vector2.ZERO
 
+	# Tension zoom: pull closer while badly hurt.
+	var target := BASE_ZOOM
+	var player := get_parent()
+	if player and "health" in player and player.health <= player.max_health * LOW_HP_THRESHOLD:
+		target = LOW_HP_ZOOM
+	_current_base = move_toward(_current_base, target, 0.4 * delta)
+
 	if _zoom_kick > 0.0:
 		_zoom_kick = move_toward(_zoom_kick, 0.0, 0.4 * delta)
-		zoom = Vector2.ONE * (BASE_ZOOM + _zoom_kick)
+	zoom = Vector2.ONE * (_current_base + _zoom_kick)

@@ -31,11 +31,12 @@ region = Rect2(127.85512, 320.87448, 47.184128, 45.298157)
 [node name="Level" type="Node2D" unique_id=723381019]
 
 [node name="Background" type="TextureRect" parent="." unique_id=387135978]
-offset_left = -93.0
-offset_top = -16.0
-offset_right = 1203.0
-offset_bottom = 704.0
+texture_repeat = 2
+offset_right = 576.0
+offset_bottom = 324.0
+scale = Vector2(3, 3)
 texture = ExtResource("1_bg")
+stretch_mode = 1
 
 [node name="LavaFloor" type="TextureRect" parent="." unique_id=1571574014]
 texture_repeat = 2
