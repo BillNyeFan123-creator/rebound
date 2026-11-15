@@ -18,20 +18,23 @@ func _ready() -> void:
 		unlocked.assign(_library.slice(0, STARTING_UNLOCK_COUNT))
 
 
-func unlock_random() -> Card:
-	# Unlock a card the player doesn't own yet (compared by script/type,
-	# since library instances are recreated).
+func unlockable_cards() -> Array[Card]:
+	# Cards the player has never unlocked (compared by script/type).
 	var owned_scripts: Array = unlocked.map(func(c: Card): return c.get_script())
-	var pool := _library.filter(
+	return _library.filter(
 		func(c: Card): return not owned_scripts.has(c.get_script())
 	)
-	if pool.is_empty():
-		return null
-	var card: Card = pool.pick_random()
+
+
+func unlock(card: Card) -> bool:
+	# Adds a specific card to the collection (used by the death pick screen).
+	var owned_scripts: Array = unlocked.map(func(c: Card): return c.get_script())
+	if owned_scripts.has(card.get_script()):
+		return false
 	unlocked.append(card)
 	loadout_changed.emit()
 	Sfx.play("unlock", -3.0)
-	return card
+	return true
 
 
 func equip(card: Card) -> bool:
@@ -40,6 +43,11 @@ func equip(card: Card) -> bool:
 	if equipped.size() == 3:
 		return false
 	equipped.append(card)
+	# Applying the card's effect requires the player; look it up here so
+	# every equip path (menu drag, future UIs) applies automatically.
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		card.apply(player)
 	loadout_changed.emit()
 	Sfx.play("click", -4.0)
 	return true

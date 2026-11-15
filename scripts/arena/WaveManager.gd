@@ -46,7 +46,6 @@ func _process(delta: float) -> void:
 		if break_timer <= 0.0:
 			_start_next_wave()
 
-
 func _start_next_wave() -> void:
 	wave += 1
 	to_spawn = BASE_WAVE_SIZE + wave
@@ -107,24 +106,18 @@ func _on_enemy_died() -> void:
 	player.on_enemy_killed()  # lifesteal cards hook in here
 	if alive == 0 and to_spawn == 0:
 		print("Wave ", wave, " cleared!")
-		CardManager.unlock_random()  # clearing a wave unlocks a new card
 		break_timer = BREAK_TIME
 
 
 func _on_player_died() -> void:
 	RunState.run_count += 1
-	# Every bounce back reveals one brand-new card option (until the
-	# library is exhausted), so the offers change from death to death.
-	CardManager.unlock_random()
-	# Guarantee 3 unequipped cards to offer, unlocking more if needed.
-	for i in 3:
-		var candidates := CardManager.unlocked.filter(
-			func(c: Card): return not CardManager.equipped.has(c)
-		)
-		if candidates.size() >= 3:
-			break
-		if CardManager.unlock_random() == null:
-			break  # everything is unlocked
+	# If every card is already unlocked, there is nothing to pick from:
+	# bounce back immediately instead of showing an empty screen.
+	if CardManager.unlockable_cards().is_empty():
+		get_tree().paused = true
+		_bounce_back()
+		return
+	# Fizzle out: fade + shrink the knight, THEN pause and offer cards.
 	var sprite = player.get_node_or_null("SpriteKnight")
 	if sprite:
 		var tw := sprite.create_tween()
@@ -142,15 +135,19 @@ func _open_card_pick() -> void:
 
 
 func _on_card_chosen(card: Card) -> void:
-	# Bounce back: slots are fixed at 3, so a full loadout drops its oldest card.
-	if CardManager.equipped.size() >= 3:
-		CardManager.remove(CardManager.equipped[0])
-	CardManager.equip(card)
-	card.apply(player)  # newly equipped card takes effect right away
+	# The death pick UNLOCKS the card; equipping it is done in the card
+	# manager menu (C), where picking it up applies the effect.
+	CardManager.unlock(card)
 	pick_ui.close()
 	get_tree().paused = false
 	player.respawn()
 	# Death resets the run: clear the field and start over from wave 1.
+	_reset_to_wave_one()
+
+
+func _bounce_back() -> void:
+	get_tree().paused = false
+	player.respawn()
 	_reset_to_wave_one()
 
 
