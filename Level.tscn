@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" path="res://scenes/Enemies/BossSlime.tscn" id="9_boss"]
 [ext_resource type="PackedScene" uid="uid://dfc4lnwdviwss" path="res://scenes/Enemy.tscn" id="8_small"]
 [ext_resource type="PackedScene" path="res://scenes/CardPickUI.tscn" id="6_pick"]
+[ext_resource type="Texture2D" path="res://assets/GameUI/light_radial.tres" id="10_light"]
+[ext_resource type="Script" path="res://scripts/arena/LavaLight.gd" id="11_lavalight"]
 [ext_resource type="PackedScene" path="res://scenes/InstructionUI.tscn" id="7_instr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q6vxt"]
@@ -31,7 +33,21 @@ size = Vector2(40, 800)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
 size = Vector2(1250, 40)
 
+[sub_resource type="Gradient" id="Gradient_torch"]
+offsets = PackedFloat32Array(0, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.35, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_torch"]
+gradient = SubResource("Gradient_torch")
+width = 512
+height = 512
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Level" type="Node2D" unique_id=723381019]
+
+[node name="Darkness" type="CanvasModulate" parent="."]
+color = Color(0.52, 0.47, 0.72, 1)
 
 [node name="Background" type="TextureRect" parent="." unique_id=387135978]
 texture_repeat = 2
@@ -62,6 +78,14 @@ offset_bottom = 199.0
 scale = Vector2(3, 3)
 texture = ExtResource("2_rocks")
 stretch_mode = 1
+
+[node name="LavaGlow" type="PointLight2D" parent="."]
+position = Vector2(576, 590)
+color = Color(1, 0.55, 0.2, 1)
+energy = 1.3
+texture = ExtResource("10_light")
+texture_scale = 2.4
+script = ExtResource("11_lavalight")
 
 [node name="HealthHUD" parent="." unique_id=172373582 instance=ExtResource("1_2nifc")]
 

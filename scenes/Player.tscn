@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/player/sprite_knight.tscn" id="2_knight"]
 [ext_resource type="Script" uid="uid://cjabg4x6vm740" path="res://scripts/SpriteKnightAnimanager.gd" id="3_3li8b"]
 [ext_resource type="Script" path="res://scripts/arena/GameCamera.gd" id="4_camera"]
+[ext_resource type="Texture2D" path="res://assets/GameUI/light_radial.tres" id="5_light"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
 size = Vector2(75, 83)
@@ -34,3 +35,9 @@ shape = SubResource("CircleShape2D_attack")
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_camera")
+
+[node name="Torch" type="PointLight2D" parent="."]
+color = Color(1, 0.8, 0.55, 1)
+energy = 1.1
+texture = ExtResource("5_light")
+texture_scale = 1.8

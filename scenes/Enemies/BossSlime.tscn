@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://cqff4qv31bysj"]
+﻿[gd_scene format=3 uid="uid://cqff4qv31bysj"]
 
 [ext_resource type="Script" uid="uid://bpttpf4o48mqm" path="res://scripts/arena/Enemy.gd" id="1_k3ul7"]
+[ext_resource type="Texture2D" path="res://assets/GameUI/light_radial.tres" id="20_light"]
 [ext_resource type="Texture2D" uid="uid://b366yhla3e8sm" path="res://scenes/Enemies/Small Slime/small_slime_dead_32x32.png" id="2_6d1o2"]
 [ext_resource type="Texture2D" uid="uid://bem7r7nxawqxn" path="res://scenes/Enemies/Boss/slimebosshit.png" id="3_k3ul7"]
 [ext_resource type="Texture2D" uid="uid://c6t1bhqebpfd0" path="res://scenes/Enemies/Boss/slimebossidle.png" id="4_6d1o2"]
@@ -178,8 +179,15 @@ scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_slime")
 animation = &"idle"
 
+[node name="Glow" type="PointLight2D" parent="."]
+color = Color(0.45, 1, 0.4, 1)
+energy = 1.0
+texture = ExtResource("20_light")
+texture_scale = 2.2
+
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1941984171]
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=817774841]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_hurt")
+
