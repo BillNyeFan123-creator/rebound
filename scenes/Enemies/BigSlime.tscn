@@ -1,10 +1,37 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cp1i18gl2wogj"]
 
-[ext_resource type="Script" path="res://scripts/arena/Enemy.gd" id="1_enemy"]
-[ext_resource type="Texture2D" path="res://scenes/Enemies/Big Slime/big_slime_idle_32x32.png" id="2_idle"]
-[ext_resource type="Texture2D" path="res://scenes/Enemies/Big Slime/big_slime_jump_32x32.png" id="3_jump"]
-[ext_resource type="Texture2D" path="res://scenes/Enemies/Big Slime/big_slime_get_hit_32x32.png" id="4_hit"]
-[ext_resource type="Texture2D" path="res://scenes/Enemies/Big Slime/big_slime_death_32x32.png" id="5_death"]
+[ext_resource type="Script" uid="uid://bpttpf4o48mqm" path="res://scripts/arena/Enemy.gd" id="1_enemy"]
+[ext_resource type="Texture2D" uid="uid://dm7beelg48dun" path="res://scenes/Enemies/Big Slime/big_slime_idle_32x32.png" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://ct4v1lra58p65" path="res://scenes/Enemies/Big Slime/big_slime_jump_32x32.png" id="3_jump"]
+[ext_resource type="Texture2D" uid="uid://b8i4jl384p4ou" path="res://scenes/Enemies/Big Slime/big_slime_get_hit_32x32.png" id="4_hit"]
+[ext_resource type="Texture2D" uid="uid://cqaxxjci2kjq2" path="res://scenes/Enemies/Big Slime/big_slime_death_32x32.png" id="5_death"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(24, 20)
+
+[sub_resource type="AtlasTexture" id="at_death_0"]
+atlas = ExtResource("5_death")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_death_1"]
+atlas = ExtResource("5_death")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_death_2"]
+atlas = ExtResource("5_death")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_death_3"]
+atlas = ExtResource("5_death")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_hit_0"]
+atlas = ExtResource("4_hit")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="at_hit_1"]
+atlas = ExtResource("4_hit")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="at_idle_0"]
 atlas = ExtResource("2_idle")
@@ -54,32 +81,36 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("3_jump")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="at_hit_0"]
-atlas = ExtResource("4_hit")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_hit_1"]
-atlas = ExtResource("4_hit")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_death_0"]
-atlas = ExtResource("5_death")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_death_1"]
-atlas = ExtResource("5_death")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_death_2"]
-atlas = ExtResource("5_death")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_death_3"]
-atlas = ExtResource("5_death")
-region = Rect2(96, 0, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_slime"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_death_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_death_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_death_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_death_3")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("at_hit_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("at_hit_1")
+}],
+"loop": 0,
+"name": &"get_hit",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("at_idle_0")
@@ -125,56 +156,25 @@ animations = [{
 "loop": 1,
 "name": &"jump",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("at_hit_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_hit_1")
-}],
-"loop": 0,
-"name": &"get_hit",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("at_death_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_death_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_death_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_death_3")
-}],
-"loop": 0,
-"name": &"death",
-"speed": 10.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(24, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
 size = Vector2(32, 26)
 
-[node name="BigSlime" type="CharacterBody2D" groups=["enemy"]]
+[node name="BigSlime" type="CharacterBody2D" unique_id=1973961784 groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_enemy")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=511865099]
 shape = SubResource("RectangleShape2D_body")
 
-[node name="Anim" type="AnimatedSprite2D" parent="."]
+[node name="Anim" type="AnimatedSprite2D" parent="." unique_id=473419677]
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_slime")
 animation = &"idle"
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=361417128]
 
-[node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1531270153]
 shape = SubResource("RectangleShape2D_hurt")
