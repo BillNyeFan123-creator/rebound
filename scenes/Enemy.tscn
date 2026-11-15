@@ -180,9 +180,9 @@ animation = &"idle"
 
 [node name="Glow" type="PointLight2D" parent="."]
 color = Color(0.45, 1, 0.4, 1)
-energy = 0.7
+energy = 0.4
 texture = ExtResource("20_light")
-texture_scale = 1.2
+texture_scale = 0.9
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1205436785]
 

@@ -2,7 +2,7 @@ extends PointLight2D
 # Pulses the lava glow so the floor feels alive.
 
 var _time := 0.0
-var _base_energy := 1.3
+var _base_energy := 0.8
 
 
 func _ready() -> void:
