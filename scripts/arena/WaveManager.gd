@@ -12,6 +12,7 @@ const BASE_WAVE_SIZE := 2
 @export var enemy_scene: PackedScene
 @export var small_enemy_scene: PackedScene  # faster, weaker type, mixed in from wave 2
 @export var blue_enemy_scene: PackedScene   # third type, mixed in from wave 4
+@export var boss_enemy_scene: PackedScene   # one spawns every 5th wave
 @export var pick_ui_path: NodePath
 
 var wave := 0
@@ -48,7 +49,19 @@ func _start_next_wave() -> void:
 	to_spawn = BASE_WAVE_SIZE + wave
 	spawn_timer = 0.0
 	between_waves = false
+	# Every 5th wave, a boss joins the roster.
+	if boss_enemy_scene and wave % 5 == 0:
+		_spawn_boss()
 	print("Wave ", wave, " starting: ", to_spawn, " enemies")
+
+
+func _spawn_boss() -> void:
+	alive += 1
+	var boss: Node2D = boss_enemy_scene.instantiate()
+	boss.global_position = Vector2(576, 80)  # center ceiling, dramatic entrance
+	boss.died.connect(_on_enemy_died)
+	add_child(boss)
+	print("A boss has appeared!")
 
 
 func _spawn_enemy() -> void:
