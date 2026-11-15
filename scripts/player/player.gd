@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY * jump_mult
 		jump_buffer = 0.0
 		coyote = 0.0
+		Sfx.play("jump", -8.0)
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:

@@ -3,7 +3,9 @@ extends Node
 # Usage: Sfx.play("hurt") or Sfx.play("dash", -8.0)
 
 const SOUNDS := {
-	"attack": preload("res://assets/Sounds/SFX/attack.ogg"),
+	"attack": preload("res://assets/Sounds/SFX/sword_swing.wav"),
+	"hit": preload("res://assets/Sounds/SFX/hit.ogg"),
+	"jump": preload("res://assets/Sounds/SFX/jump.wav"),
 	"kill": preload("res://assets/Sounds/SFX/kill.ogg"),
 	"hurt": preload("res://assets/Sounds/SFX/hurt.ogg"),
 	"dash": preload("res://assets/Sounds/SFX/dash.ogg"),

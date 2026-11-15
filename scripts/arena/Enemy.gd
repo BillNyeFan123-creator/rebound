@@ -68,6 +68,7 @@ func take_hit(damage: float) -> void:
 	if _dying:
 		return
 	health -= int(ceil(damage))
+	Sfx.play("hit", -6.0)
 	if health <= 0:
 		die()
 		return
