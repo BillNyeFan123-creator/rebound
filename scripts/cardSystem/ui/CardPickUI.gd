@@ -25,6 +25,14 @@ func open() -> void:
 	var pool := CardManager.unlocked.filter(
 		func(c: Card): return not CardManager.equipped.has(c)
 	)
+	# Dedupe by card type so the same card can never appear twice.
+	var seen: Array = []
+	var unique: Array[Card] = []
+	for c in pool:
+		if not seen.has(c.get_script()):
+			seen.append(c.get_script())
+			unique.append(c)
+	pool = unique
 	pool.shuffle()
 	for card in pool.slice(0, OFFER_COUNT):
 		var button := Button.new()

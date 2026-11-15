@@ -68,13 +68,20 @@ func _spawn_enemy() -> void:
 
 
 func _random_edge_position() -> Vector2:
-	# Spawn at the side walls or ceiling (never below the floor).
-	var x := randf_range(ARENA_MIN.x, ARENA_MAX.x)
-	var y := randf_range(ARENA_MIN.y, ARENA_MAX.y)
-	match randi() % 3:
-		0: return Vector2(ARENA_MIN.x, y)
-		1: return Vector2(ARENA_MAX.x, y)
-		_: return Vector2(x, ARENA_MIN.y)
+	# Spawn at the side walls or ceiling (never below the floor),
+	# and never directly above/near the player (no drops on the head).
+	var player := get_tree().get_first_node_in_group("player") as Node2D
+	var last := Vector2(ARENA_MIN.x, ARENA_MIN.y)
+	for i in 10:
+		var x := randf_range(ARENA_MIN.x, ARENA_MAX.x)
+		var y := randf_range(ARENA_MIN.y, ARENA_MAX.y)
+		match randi() % 3:
+			0: last = Vector2(ARENA_MIN.x, y)
+			1: last = Vector2(ARENA_MAX.x, y)
+			_: last = Vector2(x, ARENA_MIN.y)
+		if player == null or absf(last.x - player.global_position.x) > 170.0:
+			return last
+	return last
 
 
 func _on_enemy_died() -> void:
