@@ -134,9 +134,16 @@ func take_damage(amount: int) -> void:
 	health = max(health - maxi(1, roundi(amount * damage_taken_mult)), 0)
 	invuln_timer = INVULN_TIME
 	health_changed.emit(health, max_health)
+	_shake(5.0)
 
 	if health == 0:
 		died.emit()
+
+
+func _shake(amount: float) -> void:
+	var cam := get_tree().get_first_node_in_group("camera") as GameCamera
+	if cam:
+		cam.shake(amount)
 
 
 func heal(amount: int) -> void:
@@ -148,6 +155,7 @@ func on_enemy_killed() -> void:
 	# Lifesteal hook, called by the WaveManager when an enemy dies.
 	if heal_on_kill > 0.0:
 		heal(roundi(heal_on_kill))
+	_shake(2.5)
 
 
 func reset_health() -> void:

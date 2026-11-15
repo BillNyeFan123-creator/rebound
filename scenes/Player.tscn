@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cpw8iinfo4paq" path="res://scripts/player/player.gd" id="1_kpjcp"]
 [ext_resource type="PackedScene" path="res://scenes/player/sprite_knight.tscn" id="2_knight"]
 [ext_resource type="Script" uid="uid://cjabg4x6vm740" path="res://scripts/SpriteKnightAnimanager.gd" id="3_3li8b"]
+[ext_resource type="Script" path="res://scripts/arena/GameCamera.gd" id="4_camera"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfnw"]
 size = Vector2(75, 83)
@@ -29,3 +30,6 @@ shape = SubResource("RectangleShape2D_xhfnw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1918902232]
 position = Vector2(7, 75)
 shape = SubResource("CircleShape2D_attack")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("4_camera")

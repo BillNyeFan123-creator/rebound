@@ -46,5 +46,9 @@ func take_hit(damage: float) -> void:
 
 
 func die() -> void:
+	HitStop.trigger()  # brief freeze on the killing blow
+	var cam := get_tree().get_first_node_in_group("camera") as GameCamera
+	if cam:
+		cam.shake(3.0)
 	died.emit()
 	queue_free()
