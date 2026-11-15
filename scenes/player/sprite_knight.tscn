@@ -2,6 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://u4g038qop5cs" path="res://assets/Player/Knight/Idle Anim/knight_idle_0.png" id="1_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://caaghuvi0yqp1" path="res://assets/Player/Knight/Idle Anim/knight_idle_1.png" id="2_khinc"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_0.png" id="3_wr0"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_1.png" id="4_wr1"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_2.png" id="5_wr2"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_3.png" id="6_wr3"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_0.png" id="7_wl0"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_1.png" id="8_wl1"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_2.png" id="9_wl2"]
+[ext_resource type="Texture2D" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_3.png" id="10_wl3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vrxvm"]
 animations = [{
@@ -15,6 +23,40 @@ animations = [{
 "loop": 1,
 "name": &"knight idle",
 "speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wr3")
+}],
+"loop": 1,
+"name": &"knight walk right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wl3")
+}],
+"loop": 1,
+"name": &"knight walk left",
+"speed": 8.0
 }]
 
 [node name="SpriteKnight" type="AnimatedSprite2D"]
