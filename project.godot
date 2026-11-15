@@ -13,7 +13,7 @@ config_version=5
 config/name="Rebound"
 run/main_scene="uid://drcju0ep61atp"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Rebound.png"
 
 [autoload]
 
