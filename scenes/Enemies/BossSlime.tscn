@@ -98,7 +98,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"death",
-"speed": 10.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -109,7 +109,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"get_hit",
-"speed": 10.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -155,7 +155,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"jump",
-"speed": 10.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
