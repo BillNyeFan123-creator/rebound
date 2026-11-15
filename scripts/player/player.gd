@@ -108,17 +108,11 @@ func _do_attack() -> void:
 			body.take_hit(ATTACK_DAMAGE * damage_mult)
 
 
-const DASH_VFX := preload("res://assets/VFX/dash.png")
-
-
 func _start_dash(direction: float) -> void:
 	if direction != 0.0:
 		dash_dir = Vector2(direction, 0.0)
 	else:
 		dash_dir = Vector2(facing, 0.0)
-	var fx := Vfx.spawn(get_parent(), DASH_VFX, 6, 5, 30, 60.0, global_position, 1.8, false)
-	if dash_dir.x < 0.0:
-		fx.flip_h = true
 	invuln_timer = maxf(invuln_timer, DASH_TIME * dash_time_mult)
 	dash_time = DASH_TIME * dash_time_mult
 	dash_cd = DASH_COOLDOWN * dash_cd_mult
