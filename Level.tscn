@@ -18,6 +18,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6vxt"]
 size = Vector2(1250, 145)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(40, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
+size = Vector2(1250, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6vxt"]
 atlas = ExtResource("1_q4iis")
 region = Rect2(127.85512, 320.87448, 47.184128, 45.298157)
@@ -58,6 +64,20 @@ position = Vector2(575, 419)
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=934898494]
 physics_material_override = SubResource("PhysicsMaterial_q6vxt")
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-20, 324)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Right" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1172, 324)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Ceiling" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(576, -20)
+shape = SubResource("RectangleShape2D_ceiling")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1101255283]
 position = Vector2(584, 615.5)
