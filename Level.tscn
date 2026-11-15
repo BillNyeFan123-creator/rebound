@@ -134,7 +134,6 @@ autoplay = true
 [node name="CardPickUI" parent="." unique_id=1133760355 instance=ExtResource("6_pick")]
 
 [node name="InstructionUI" parent="." unique_id=1643897711 instance=ExtResource("7_instr")]
-visible = false
 
 [node name="WaveManager" type="Node" parent="." unique_id=1387957286]
 script = ExtResource("4_waves")
@@ -143,5 +142,3 @@ small_enemy_scene = ExtResource("8_small")
 blue_enemy_scene = ExtResource("9_blue")
 boss_enemy_scene = ExtResource("9_boss")
 pick_ui_path = NodePath("../CardPickUI")
-
-[node name="menumusic" type="AudioStreamPlayer" parent="." unique_id=1051346311]
