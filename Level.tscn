@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://mijwfcrkyma8" path="res://assets/Backgrounds/Lava/lava-tile.png" id="3_lava"]
 [ext_resource type="Script" uid="uid://bq4jyhm7e1q5w" path="res://scripts/arena/WaveManager.gd" id="4_waves"]
 [ext_resource type="AudioStream" uid="uid://cxscbn1b585hl" path="res://assets/Sounds/bgmusic(1).wav" id="4_wkftn"]
-[ext_resource type="PackedScene" path="res://scenes/Enemy.tscn" id="5_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/Enemies/BigSlime.tscn" id="5_enemy"]
 [ext_resource type="PackedScene" path="res://scenes/CardPickUI.tscn" id="6_pick"]
 [ext_resource type="PackedScene" path="res://scenes/InstructionUI.tscn" id="7_instr"]
 
@@ -42,9 +42,9 @@ stretch_mode = 1
 
 [node name="LavaFloor" type="TextureRect" parent="." unique_id=1571574014]
 texture_repeat = 2
-offset_left = -2096.0
+offset_left = -791.0
 offset_top = 490.0
-offset_right = -390.66663
+offset_right = 147.00006
 offset_bottom = 550.0
 scale = Vector2(3, 3)
 texture = ExtResource("3_lava")
@@ -52,9 +52,9 @@ stretch_mode = 1
 
 [node name="MidRocks" type="TextureRect" parent="." unique_id=589552363]
 texture_repeat = 2
-offset_left = -1189.0
+offset_left = -720.0
 offset_top = -41.0
-offset_right = 73.333374
+offset_right = 127.0
 offset_bottom = 199.0
 scale = Vector2(3, 3)
 texture = ExtResource("2_rocks")
@@ -73,9 +73,9 @@ position = Vector2(584, 615.5)
 shape = SubResource("RectangleShape2D_q6vxt")
 
 [node name="TextureRect" type="TextureRect" parent="Floor" unique_id=1665761160]
-offset_left = -1900.0001
+offset_left = -705.0
 offset_top = 542.0
-offset_right = -577.0001
+offset_right = 219.66663
 offset_bottom = 587.0
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_q6vxt")

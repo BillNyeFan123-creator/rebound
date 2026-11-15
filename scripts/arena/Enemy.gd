@@ -5,11 +5,19 @@ signal died
 
 const HitStopScript = preload("res://scripts/arena/HitStop.gd")
 
-@export var max_health := 2
-@export var speed := 60.0
-@export var contact_damage := 10
+@export var max_health := 3
+@export var speed := 50.0
+@export var contact_damage := 15
 
 var health: int = max_health
+
+@onready var anim: AnimatedSprite2D = get_node_or_null("Anim")
+
+
+func _ready() -> void:
+	if anim and anim.sprite_frames.has_animation("idle"):
+		anim.play("idle")
+		anim.animation_finished.connect(_on_anim_finished)
 
 
 func _physics_process(_delta: float) -> void:
@@ -30,10 +38,27 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = -350.0  # hop over obstacles
 	move_and_slide()
 
+	if anim and _can_play_move_anim():
+		if absf(velocity.x) > 5.0 and anim.sprite_frames.has_animation("jump"):
+			if anim.animation != "jump":
+				anim.play("jump")
+		elif anim.sprite_frames.has_animation("idle") and anim.animation != "idle":
+			anim.play("idle")
+
 	# Contact damage. The player's i-frames prevent this from stacking every frame.
 	for body in $Hurtbox.get_overlapping_bodies():
 		if body.has_method("take_damage"):
 			body.take_damage(contact_damage)
+
+
+func _can_play_move_anim() -> bool:
+	return not anim.is_playing() \
+		or anim.animation in ["idle", "jump"]
+
+
+func _on_anim_finished() -> void:
+	if anim.animation == "get_hit":
+		anim.play("idle") if absf(velocity.x) <= 5.0 else anim.play("jump")
 
 
 func take_hit(damage: float) -> void:
@@ -41,10 +66,8 @@ func take_hit(damage: float) -> void:
 	if health <= 0:
 		die()
 		return
-	# Hit flash.
-	var tween := create_tween()
-	modulate = Color(3, 3, 3)
-	tween.tween_property(self, "modulate", Color.WHITE, 0.15)
+	if anim and anim.sprite_frames.has_animation("get_hit"):
+		anim.play("get_hit")
 
 
 func die() -> void:
@@ -53,4 +76,11 @@ func die() -> void:
 	if cam:
 		cam.shake(3.0)
 	died.emit()
+	# Play the death animation, then remove the body.
+	if anim and anim.sprite_frames.has_animation("death"):
+		collision_layer = 0
+		collision_mask = 0
+		$Hurtbox.monitoring = false
+		anim.play("death")
+		await anim.animation_finished
 	queue_free()
