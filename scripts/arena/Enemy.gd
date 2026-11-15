@@ -10,6 +10,7 @@ const HitStopScript = preload("res://scripts/arena/HitStop.gd")
 @export var contact_damage := 15
 
 var health: int = max_health
+var _dying := false
 
 @onready var anim: AnimatedSprite2D = get_node_or_null("Anim")
 
@@ -52,6 +53,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _can_play_move_anim() -> bool:
+	if _dying:
+		return false
 	return not anim.is_playing() \
 		or anim.animation in ["idle", "jump"]
 
@@ -62,15 +65,22 @@ func _on_anim_finished() -> void:
 
 
 func take_hit(damage: float) -> void:
+	if _dying:
+		return
 	health -= int(ceil(damage))
 	if health <= 0:
 		die()
 		return
-	if anim and anim.sprite_frames.has_animation("get_hit"):
+	# Don't restart the hit anim mid-play — let it finish so it can't stutter.
+	if anim and anim.sprite_frames.has_animation("get_hit") \
+			and not (anim.is_playing() and anim.animation == "get_hit"):
 		anim.play("get_hit")
 
 
 func die() -> void:
+	if _dying:
+		return  # a second hit during the death anim must not re-kill
+	_dying = true
 	HitStopScript.trigger()  # brief freeze on the killing blow
 	var cam = get_tree().get_first_node_in_group("camera")
 	if cam:
