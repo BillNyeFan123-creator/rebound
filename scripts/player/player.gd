@@ -141,7 +141,7 @@ func take_damage(amount: int) -> void:
 
 
 func _shake(amount: float) -> void:
-	var cam := get_tree().get_first_node_in_group("camera") as GameCamera
+	var cam = get_tree().get_first_node_in_group("camera")
 	if cam:
 		cam.shake(amount)
 

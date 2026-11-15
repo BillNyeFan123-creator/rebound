@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 signal died
 
+const HitStopScript = preload("res://scripts/arena/HitStop.gd")
+
 @export var max_health := 2
 @export var speed := 60.0
 @export var contact_damage := 10
@@ -46,8 +48,8 @@ func take_hit(damage: float) -> void:
 
 
 func die() -> void:
-	HitStop.trigger()  # brief freeze on the killing blow
-	var cam := get_tree().get_first_node_in_group("camera") as GameCamera
+	HitStopScript.trigger()  # brief freeze on the killing blow
+	var cam = get_tree().get_first_node_in_group("camera")
 	if cam:
 		cam.shake(3.0)
 	died.emit()
