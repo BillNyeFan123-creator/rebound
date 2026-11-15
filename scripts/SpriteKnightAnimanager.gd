@@ -1,7 +1,10 @@
 extends AnimatedSprite2D
-# Drives the knight's animations from the player's state:
-# idle <-> walk (matching left/right art), one-shot attack swings, and a
-# squash-stretch dash pose (no dedicated dash art yet).
+# Knight animation controller. A small state machine:
+#   IDLE <-> WALK <-> DASH, with ATTACK as a one-shot override.
+# The controller owns the sprite entirely; gameplay code only emits
+# `attack_started` and sets dash/velocity fields on the player.
+
+enum State { IDLE, WALK, ATTACK, DASH }
 
 const ANIM_IDLE := "knight idle"
 const ANIM_WALK_LEFT := "knight walk left"
@@ -10,37 +13,25 @@ const ANIM_ATTACK_LEFT := "knight attack left"
 const ANIM_ATTACK_RIGHT := "knight attack right"
 const ANIM_ATTACK_FRONT := "knight attack front"
 
+const MOVE_SPEED_THRESHOLD := 10.0
 const DASH_STRETCH_X := 1.35
 const DASH_SQUASH_Y := 0.8
 
-var _base_scale := Vector2.ONE
-var _attacking := false
+var base_scale := Vector2.ONE
+var _state: int = State.IDLE
+var _attack_requested := false
 
 
 func _ready() -> void:
-	_base_scale = scale
-	play(ANIM_IDLE)
+	base_scale = scale
+	_play_for_state()
 	var player := get_parent()
 	if player and player.has_signal("attack_started"):
 		player.attack_started.connect(_on_attack_started)
 
 
 func _on_attack_started() -> void:
-	var player := get_parent()
-	_attacking = true
-	scale = _base_scale
-	# Standing still? Swing toward the camera; moving? swing in travel direction.
-	if player and absf(player.velocity.x) > 10.0:
-		if player.facing >= 0.0:
-			play(ANIM_ATTACK_RIGHT)
-		else:
-			play(ANIM_ATTACK_LEFT)
-	elif sprite_frames.has_animation("knight attack front"):
-		play("knight attack front")
-	elif player and player.facing >= 0.0:
-		play(ANIM_ATTACK_RIGHT)
-	else:
-		play(ANIM_ATTACK_LEFT)
+	_attack_requested = true
 
 
 func _physics_process(_delta: float) -> void:
@@ -48,29 +39,76 @@ func _physics_process(_delta: float) -> void:
 	if player == null:
 		return
 
-	# Attack swing overrides everything until the animation finishes.
-	if _attacking:
-		if is_playing() and animation in [ANIM_ATTACK_LEFT, ANIM_ATTACK_RIGHT, ANIM_ATTACK_FRONT]:
-			return
-		_attacking = false
-
-	if player.dash_time > 0.0:
-		# Dash pose: stretch along the dash direction.
-		play(ANIM_WALK_RIGHT if player.dash_dir.x >= 0.0 else ANIM_WALK_LEFT)
-		var stretch := signf(player.dash_dir.x)
-		if is_zero_approx(stretch):
-			stretch = 1.0
-		scale = Vector2(
-			_base_scale.x * (DASH_STRETCH_X if stretch > 0.0 else DASH_SQUASH_Y),
-			_base_scale.y * (DASH_SQUASH_Y if stretch > 0.0 else DASH_STRETCH_X)
-		)
+	# While the death fizzle or spawn ghost tween owns the sprite
+	# (modulate alpha != 1), the controller stands down.
+	if modulate.a < 0.99:
+		return
+	# Dead players are being fizzled out; don't fight the tween.
+	if player.health <= 0:
 		return
 
-	scale = _base_scale
-	if absf(player.velocity.x) > 10.0:
-		var walk := ANIM_WALK_RIGHT if player.velocity.x > 0.0 else ANIM_WALK_LEFT
-		if animation != walk:
-			play(walk)
-	else:
-		if animation != ANIM_IDLE:
+	var next := _decide_state(player)
+	if next != _state:
+		_state = next
+		_play_for_state()
+
+	# The dash pose is a live transform, applied every dash frame.
+	if _state == State.DASH:
+		_apply_dash_pose(player)
+	elif _state != State.ATTACK:
+		scale = base_scale
+
+
+func _decide_state(player: CharacterBody2D) -> int:
+	# Attacks win: consume the request, play the swing, hold until it ends.
+	if _attack_requested:
+		if _state != State.ATTACK:
+			_state = State.ATTACK
+			_play_for_state()
+			return _state
+		if is_playing():
+			return _state
+		_attack_requested = false  # swing finished
+	if player.dash_time > 0.0:
+		return State.DASH
+	if absf(player.velocity.x) > MOVE_SPEED_THRESHOLD:
+		return State.WALK
+	return State.IDLE
+
+
+func _play_for_state() -> void:
+	var player := get_parent()
+	match _state:
+		State.ATTACK:
+			play(_pick_attack_anim(player))
+		State.DASH:
+			_apply_dash_pose(player)
+		State.WALK:
+			if player and player.velocity.x > 0.0:
+				play(ANIM_WALK_RIGHT)
+			else:
+				play(ANIM_WALK_LEFT)
+			scale = base_scale
+		_:
 			play(ANIM_IDLE)
+			scale = base_scale
+
+
+func _pick_attack_anim(player) -> String:
+	# Standing still: swing toward the camera. Moving: swing along travel.
+	if player and absf(player.velocity.x) > MOVE_SPEED_THRESHOLD:
+		return ANIM_ATTACK_RIGHT if player.facing >= 0.0 else ANIM_ATTACK_LEFT
+	if sprite_frames.has_animation(ANIM_ATTACK_FRONT):
+		return ANIM_ATTACK_FRONT
+	return ANIM_ATTACK_RIGHT if player.facing >= 0.0 else ANIM_ATTACK_LEFT
+
+
+func _apply_dash_pose(player: CharacterBody2D) -> void:
+	var dir := signf(player.dash_dir.x)
+	if is_zero_approx(dir):
+		dir = 1.0
+	play(ANIM_WALK_RIGHT if dir > 0.0 else ANIM_WALK_LEFT)
+	scale = Vector2(
+		base_scale.x * (DASH_STRETCH_X if dir > 0.0 else DASH_SQUASH_Y),
+		base_scale.y * (DASH_SQUASH_Y if dir > 0.0 else DASH_STRETCH_X)
+	)
