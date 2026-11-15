@@ -169,9 +169,29 @@ func respawn() -> void:
 	if respawn_max_health_bonus > 0:
 		max_health += respawn_max_health_bonus
 	RunState.on_death()
-	global_position = RunState.checkpoint_pos
+
+	var sprite = get_node_or_null("SpriteKnight")
+	var base_scale := Vector2.ONE
+	if sprite:
+		if "_base_scale" in sprite:
+			base_scale = sprite._base_scale
+		# Ghost state: bright white silhouette, faded out, floating above.
+		sprite.modulate = Color(2.4, 2.4, 2.4, 0.0)
+		sprite.scale = Vector2(base_scale.x * 1.5, base_scale.y * 0.75)
+
+	global_position = RunState.checkpoint_pos + Vector2(0, -140)
 	velocity = Vector2.ZERO
 	dash_time = 0.0
 	reset_health()
 	# Grace period: ceiling spawners can drop slimes right on the spawn point.
 	invuln_timer = 1.5
+
+	if sprite:
+		# Drop in: fall with a bounce while the ghost fades into the knight.
+		var tw := create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(self, "global_position:y", RunState.checkpoint_pos.y, 0.5) \
+			.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		tw.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.45)
+		tw.tween_property(sprite, "scale", base_scale, 0.5) \
+			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

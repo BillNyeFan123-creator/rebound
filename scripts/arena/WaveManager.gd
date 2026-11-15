@@ -83,6 +83,19 @@ func _on_enemy_died() -> void:
 
 
 func _on_player_died() -> void:
+	# Fizzle out: fade + shrink the knight, THEN pause and offer cards.
+	var sprite = player.get_node_or_null("SpriteKnight")
+	if sprite:
+		var tw := sprite.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(sprite, "modulate:a", 0.0, 0.6)
+		tw.tween_property(sprite, "scale", sprite.scale * 0.4, 0.6).set_ease(Tween.EASE_IN)
+		tw.chain().tween_callback(_open_card_pick)
+	else:
+		_open_card_pick()
+
+
+func _open_card_pick() -> void:
 	# Guarantee 3 unequipped cards to offer, unlocking new ones on the spot
 	# if the player owns too few.
 	for i in 3:
@@ -117,4 +130,4 @@ func _reset_to_wave_one() -> void:
 	for child in get_children():
 		if child is Enemy:
 			child.queue_free()
-	break_timer = 1.5  # short grace period before wave 1 comes in
+	break_timer = 4.0  # calm moment after bouncing back before wave 1 comes in
