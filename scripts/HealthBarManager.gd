@@ -37,4 +37,6 @@ func _on_wave_started(wave: int) -> void:
 
 
 func _update_run_label(wave: int) -> void:
-	$RunLabel.text = "RUN %d  -  WAVE %d" % [RunState.run_count, wave]
+	var label = get_node_or_null("RunLabel")
+	if label:
+		label.text = "RUN %d  -  WAVE %d" % [RunState.run_count, wave]
