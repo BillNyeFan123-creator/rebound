@@ -46,4 +46,8 @@ func close() -> void:
 
 
 func _on_card_pressed(card: Card) -> void:
+	# One-shot guard: a double-click must not fire the choice twice.
+	if not root.visible:
+		return
+	close()
 	card_chosen.emit(card)

@@ -78,18 +78,16 @@ func _on_enemy_died() -> void:
 
 
 func _on_player_died() -> void:
-	# Guarantee a proper choice: offer up to 3 cards, unlocking new ones
-	# on the spot if the player owns too few unequipped cards.
-	var offered := 0
-	while offered < 3:
+	# Guarantee 3 unequipped cards to offer, unlocking new ones on the spot
+	# if the player owns too few.
+	for i in 3:
 		var candidates := CardManager.unlocked.filter(
 			func(c: Card): return not CardManager.equipped.has(c)
 		)
-		if candidates.size() <= offered:
-			if CardManager.unlock_random() == null:
-				break  # everything is unlocked
-		else:
-			offered = candidates.size()
+		if candidates.size() >= 3:
+			break
+		if CardManager.unlock_random() == null:
+			break  # everything is unlocked
 	get_tree().paused = true
 	pick_ui.open()
 
