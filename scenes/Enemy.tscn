@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://dfc4lnwdviwss"]
+[gd_scene format=3 uid="uid://dfc4lnwdviwss"]
 
 [ext_resource type="Script" uid="uid://bpttpf4o48mqm" path="res://scripts/arena/Enemy.gd" id="1_enemy"]
 [ext_resource type="Texture2D" path="res://assets/GameUI/light_radial.tres" id="20_light"]
