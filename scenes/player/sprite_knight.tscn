@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6s8uultkbi4" path="res://assets/Player/Knight/attack anim/front/knight_idle_0.png" id="1_mltwo"]
 [ext_resource type="Texture2D" uid="uid://4tlq8812rncq" path="res://assets/Player/Knight/attack anim/front/knight_attack_front.png" id="2_6fk4n"]
 [ext_resource type="Texture2D" uid="uid://caaghuvi0yqp1" path="res://assets/Player/Knight/Idle Anim/knight_idle_1.png" id="2_khinc"]
-[ext_resource type="Texture2D" uid="uid://kxr2x33mbq2u" path="res://assets/Player/Knight/attack anim/left/knightattackleft.png" id="3_kk027"]
 [ext_resource type="Texture2D" uid="uid://coy232ugddor0" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_0.png" id="3_wr0"]
-[ext_resource type="Texture2D" uid="uid://cngxv38gvrxgm" path="res://assets/Player/Knight/attack anim/right/knightattackright.png" id="4_j2y8i"]
 [ext_resource type="Texture2D" uid="uid://cw0kgpluktyxo" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_1.png" id="4_wr1"]
 [ext_resource type="Texture2D" uid="uid://o3dnndvqhc56" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_2.png" id="5_wr2"]
 [ext_resource type="Texture2D" uid="uid://dofdw1orv4tsc" path="res://assets/Player/Knight/walking anim/right/knight_walk_right_3.png" id="6_wr3"]
@@ -14,56 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dh7u6cb1j2pyc" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_1.png" id="8_wl1"]
 [ext_resource type="Texture2D" uid="uid://dvqi5a2sg6qbt" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_2.png" id="9_wl2"]
 [ext_resource type="Texture2D" uid="uid://copc0qqi1rbf1" path="res://assets/Player/Knight/walking anim/left/knight_walk_left_3.png" id="10_wl3"]
-[ext_resource type="Texture2D" path="res://assets/Player/Knight/attack anim/right/knightattackright.png" id="11_ar"]
-[ext_resource type="Texture2D" path="res://assets/Player/Knight/attack anim/left/knightattackleft.png" id="12_al"]
-
-[sub_resource type="AtlasTexture" id="at_ar_0"]
-atlas = ExtResource("11_ar")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_ar_1"]
-atlas = ExtResource("11_ar")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_ar_2"]
-atlas = ExtResource("11_ar")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_ar_3"]
-atlas = ExtResource("11_ar")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_ar_4"]
-atlas = ExtResource("11_ar")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_ar_5"]
-atlas = ExtResource("11_ar")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_al_0"]
-atlas = ExtResource("12_al")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_al_1"]
-atlas = ExtResource("12_al")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_al_2"]
-atlas = ExtResource("12_al")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_al_3"]
-atlas = ExtResource("12_al")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_al_4"]
-atlas = ExtResource("12_al")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="at_al_5"]
-atlas = ExtResource("12_al")
-region = Rect2(160, 0, 32, 32)
+[ext_resource type="Texture2D" uid="uid://cngxv38gvrxgm" path="res://assets/Player/Knight/attack anim/right/knightattackright.png" id="11_ar"]
+[ext_resource type="Texture2D" uid="uid://kxr2x33mbq2u" path="res://assets/Player/Knight/attack anim/left/knightattackleft.png" id="12_al"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnprf"]
 atlas = ExtResource("1_mltwo")
@@ -73,45 +23,45 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("2_6fk4n")
 region = Rect2(88, 9, 15, 15)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mltwo"]
+atlas = ExtResource("12_al")
+region = Rect2(28, 11, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fk4n"]
+atlas = ExtResource("12_al")
+region = Rect2(43, 11, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk027"]
+atlas = ExtResource("12_al")
+region = Rect2(58, 11, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2y8i"]
+atlas = ExtResource("12_al")
+region = Rect2(73, 11, 15, 13)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jis8u"]
-atlas = ExtResource("3_kk027")
-region = Rect2(90, 0, 16, 32)
+atlas = ExtResource("12_al")
+region = Rect2(88, 11, 15, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_basqf"]
-atlas = ExtResource("3_kk027")
-region = Rect2(74, 0, 16, 32)
+atlas = ExtResource("11_ar")
+region = Rect2(58, 9, 15, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngehl"]
-atlas = ExtResource("3_kk027")
-region = Rect2(58, 0, 16, 32)
+atlas = ExtResource("11_ar")
+region = Rect2(73, 9, 15, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7bel"]
-atlas = ExtResource("3_kk027")
-region = Rect2(42, 0, 16, 32)
+atlas = ExtResource("11_ar")
+region = Rect2(88, 9, 15, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fw5o"]
-atlas = ExtResource("3_kk027")
-region = Rect2(26, 0, 16, 32)
+atlas = ExtResource("11_ar")
+region = Rect2(103, 9, 15, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_okl4x"]
-atlas = ExtResource("4_j2y8i")
-region = Rect2(120, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vvuv1"]
-atlas = ExtResource("4_j2y8i")
-region = Rect2(104, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fa7rq"]
-atlas = ExtResource("4_j2y8i")
-region = Rect2(88, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0u45p"]
-atlas = ExtResource("4_j2y8i")
-region = Rect2(72, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vri0v"]
-atlas = ExtResource("4_j2y8i")
-region = Rect2(56, 0, 16, 32)
+atlas = ExtResource("11_ar")
+region = Rect2(118, 9, 15, 13)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vrxvm"]
 animations = [{
@@ -128,8 +78,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jis8u")
+"texture": SubResource("AtlasTexture_mltwo")
 }, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fk4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk027")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2y8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jis8u")
+}],
+"loop": 0,
+"name": &"knight attack left",
+"speed": 14.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_basqf")
 }, {
@@ -141,30 +108,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5fw5o")
-}],
-"loop": 1,
-"name": &"knight attack left",
-"speed": 8.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_okl4x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vvuv1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fa7rq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0u45p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vri0v")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"knight attack right",
-"speed": 8.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -210,55 +160,9 @@ animations = [{
 "loop": 1,
 "name": &"knight walk right",
 "speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("at_ar_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_ar_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_ar_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_ar_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_ar_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_ar_5")
-}],
-"loop": 0,
-"name": &"knight attack right",
-"speed": 14.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("at_al_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_al_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_al_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_al_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_al_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_al_5")
-}],
-"loop": 0,
-"name": &"knight attack left",
-"speed": 14.0
 }]
 
 [node name="SpriteKnight" type="AnimatedSprite2D" unique_id=1973205071]
 sprite_frames = SubResource("SpriteFrames_vrxvm")
-animation = &"knight attack left"
+animation = &"knight attack front"
 centered = false
